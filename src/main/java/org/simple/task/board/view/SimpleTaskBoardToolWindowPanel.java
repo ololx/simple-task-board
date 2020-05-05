@@ -16,44 +16,24 @@
  */
 package org.simple.task.board.view;
 
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.SimpleToolWindowPanel;
-import com.intellij.ui.ScrollPaneFactory;
-import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.ui.components.JBPanel;
 
-import javax.swing.*;
+import java.awt.*;
 
 /**
  * @project simple-task-board
- * @created 05.05.2020 14:44
+ * @created 05.05.2020 19:07
  * <p>
  * @author Alexander A. Kropotin
  */
-public class SimpleTaskBoardToolWindowPanel extends SimpleToolWindowPanel {
-
-    /**
-     * The constant ID.
-     */
-    public static final String ID = "SimpleTaskBoard";
+public class SimpleTaskBoardToolWindowPanel extends JBPanel {
 
     private SimpleTaskBoardTablePanel simpleTaskBoardTablePanel;
 
-    /**
-     * Instantiates a new Simple task board panel.
-     *
-     * @param project the project
-     */
-    public SimpleTaskBoardToolWindowPanel(Project project) {
-        super(true, true);
+    public SimpleTaskBoardToolWindowPanel() {
+        super();
+        setLayout(new BorderLayout());
         this.simpleTaskBoardTablePanel = new SimpleTaskBoardTablePanel();
-        //setContent(this.simpleTaskBoardTablePanel);
-        setContent(ScrollPaneFactory.createScrollPane(this.simpleTaskBoardTablePanel));
-
-    }
-
-    @Nullable
-    public Object getData(@NonNls String dataId) {
-        return super.getData(dataId);
+        add(this.simpleTaskBoardTablePanel);
     }
 }

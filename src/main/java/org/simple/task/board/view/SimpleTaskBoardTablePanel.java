@@ -17,6 +17,7 @@
 package org.simple.task.board.view;
 
 import com.intellij.ui.components.JBPanel;
+import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.table.JBTable;
 
 import javax.swing.*;
@@ -31,7 +32,7 @@ import java.awt.*;
  * <p>
  * @author Alexander A. Kropotin
  */
-public class SimpleTaskBoardTablePanel extends JPanel {
+public class SimpleTaskBoardTablePanel extends JBPanel {
 
     SimpleTaskBoardTable simpleTaskBoardTable;
 

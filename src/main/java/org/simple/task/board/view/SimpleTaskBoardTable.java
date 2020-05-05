@@ -29,7 +29,7 @@ import javax.swing.table.TableModel;
  * <p>
  * @author Alexander A. Kropotin
  */
-public class SimpleTaskBoardTable extends JTable {
+public class SimpleTaskBoardTable extends JBTable {
 
     public SimpleTaskBoardTable(TableModel tableModel) {
         super(tableModel);

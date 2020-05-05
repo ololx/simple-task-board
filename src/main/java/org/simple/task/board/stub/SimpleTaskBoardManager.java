@@ -19,7 +19,6 @@ package org.simple.task.board.stub;
 import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.IconLoader;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ex.ToolWindowEx;
 import com.intellij.openapi.wm.ex.ToolWindowManagerEx;
@@ -27,7 +26,7 @@ import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.content.ContentManager;
 import org.jetbrains.annotations.NotNull;
-import org.simple.task.board.view.SimpleTaskBoardToolWindowPanel;
+import org.simple.task.board.view.SimpleTaskBoardToolWindow;
 
 /**
  * @project simple-task-board
@@ -39,7 +38,7 @@ public class SimpleTaskBoardManager implements ProjectComponent {
 
     private final Project project;
 
-    private final SimpleTaskBoardToolWindowPanel panel;
+    private final SimpleTaskBoardToolWindow panel;
 
     /**
      * Instantiates a new Simple task board manager.
@@ -48,7 +47,7 @@ public class SimpleTaskBoardManager implements ProjectComponent {
      */
     protected SimpleTaskBoardManager(@NotNull final Project project) {
        this.project = project;
-       this.panel = new SimpleTaskBoardToolWindowPanel(project);
+       this.panel = new SimpleTaskBoardToolWindow(project);
     }
 
     @Override
@@ -63,7 +62,7 @@ public class SimpleTaskBoardManager implements ProjectComponent {
 
     private void initToolWindow() {
         final ToolWindowManagerEx manager = ToolWindowManagerEx.getInstanceEx(this.project);
-        ToolWindowEx simpleTaskBoardToolWindow = (ToolWindowEx) manager.registerToolWindow(SimpleTaskBoardToolWindowPanel.ID, false, ToolWindowAnchor.RIGHT, this.project, true);
+        ToolWindowEx simpleTaskBoardToolWindow = (ToolWindowEx) manager.registerToolWindow(SimpleTaskBoardToolWindow.ID, false, ToolWindowAnchor.RIGHT, this.project, true);
         final ContentFactory contentFactory = ServiceManager.getService(ContentFactory.class);
         final Content content = contentFactory.createContent(
                 panel.getComponent(),
