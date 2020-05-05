@@ -43,6 +43,7 @@ public class SimpleTaskBoardInitializer implements ToolWindowFactory {
     }
 
     public void createInstance(Project project, ToolWindow toolWindow) {
+        toolWindow.setTitle("Simple Task Board");
         SimpleTaskBoardToolWindow simpleTaskBoardToolWindow = new SimpleTaskBoardToolWindow(project, toolWindow);
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
         Content content = contentFactory.createContent(

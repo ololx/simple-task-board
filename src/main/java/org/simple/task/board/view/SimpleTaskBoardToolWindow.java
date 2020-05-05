@@ -32,7 +32,7 @@ public class SimpleTaskBoardToolWindow extends JFrame {
     JPanel simpleTaskBoardPanel;
 
     public SimpleTaskBoardToolWindow(Project project, ToolWindow toolWindow) {
-
+        super(toolWindow.getTitle());
     }
 
     public JPanel getContent() {
