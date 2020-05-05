@@ -26,31 +26,16 @@ import org.simple.task.board.view.SimpleTaskBoardToolWindow;
 
 /**
  * @project simple-task-board
- * @created 05.05.2020 08:56
+ * @created 05.05.2020 14:44
  * <p>
  * @author Alexander A. Kropotin
  */
-public class SimpleTaskBoardInitializer implements ToolWindowFactory {
+public class SimpleTaskBoardToolWindowFactory implements ToolWindowFactory {
 
-    @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-        ProjectInitializationHandler.runWhenInitialized(project, new Runnable() {
-            @Override
-            public void run() {
-                createInstance(project, toolWindow);
-            }
-        });
-    }
-
-    public void createInstance(Project project, ToolWindow toolWindow) {
-        toolWindow.setTitle("Simple Task Board");
-        SimpleTaskBoardToolWindow simpleTaskBoardToolWindow = new SimpleTaskBoardToolWindow(project, toolWindow);
+        SimpleTaskBoardToolWindow myToolWindow = new SimpleTaskBoardToolWindow(project, toolWindow);
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
-        Content content = contentFactory.createContent(
-                simpleTaskBoardToolWindow.getContent(),
-                "",
-                false
-        );
+        Content content = contentFactory.createContent(myToolWindow.getContent(), "", false);
         toolWindow.getContentManager().addContent(content);
     }
 }

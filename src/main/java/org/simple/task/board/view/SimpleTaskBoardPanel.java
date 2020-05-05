@@ -17,38 +17,39 @@
 package org.simple.task.board.view;
 
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.wm.ToolWindow;
+import com.intellij.openapi.ui.SimpleToolWindowPanel;
+import com.intellij.ui.ScrollPaneFactory;
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
 /**
  * @project simple-task-board
- * @created 05.05.2020 08:37
+ * @created 05.05.2020 14:44
  * <p>
  * @author Alexander A. Kropotin
  */
-public class SimpleTaskBoardToolWindow extends JFrame {
+public class SimpleTaskBoardPanel extends SimpleToolWindowPanel {
 
     /**
-     * The Simple task board panel.
+     * The constant ID.
      */
-    JPanel simpleTaskBoardPanel;
+    public static final String ID = "SimpleTaskBoard";
 
     /**
-     * Instantiates a new Simple task board tool window.
+     * Instantiates a new Simple task board panel.
      *
-     * @param project    the project
-     * @param toolWindow the tool window
+     * @param project the project
      */
-    public SimpleTaskBoardToolWindow(Project project, ToolWindow toolWindow) {
+    public SimpleTaskBoardPanel(Project project) {
+        super(true, true);
+        setContent(ScrollPaneFactory.createScrollPane(new JTable()));
+
     }
 
-    /**
-     * Gets content.
-     *
-     * @return the content
-     */
-    public JPanel getContent() {
-        return this.simpleTaskBoardPanel;
+    @Nullable
+    public Object getData(@NonNls String dataId) {
+        return super.getData(dataId);
     }
 }

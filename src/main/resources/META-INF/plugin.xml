@@ -12,9 +12,15 @@
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
 
+    <!--<project-components>
+        <component>
+            <implementation-class>org.simple.task.board.view.SimpleTaskBoardManager</implementation-class>
+        </component>
+    </project-components>-->
+
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="ToolWindowForm" secondary="true" icon="AllIcons.General.Modified" anchor="right"
-                    factoryClass="org.simple.task.board.stub.SimpleTaskBoardInitializer"/>
+        <toolWindow id="SimpleTaskBoard" secondary="false" icon="AllIcons.General.Modified" anchor="right"
+                    factoryClass="org.simple.task.board.stub.SimpleTaskBoardToolWindowFactory"/>
     </extensions>
 
     <actions>

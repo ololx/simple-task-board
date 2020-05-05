@@ -29,6 +29,12 @@ import com.intellij.util.DisposeAwareRunnable;
  */
 public class ProjectInitializationHandler {
 
+    /**
+     * Run when initialized.
+     *
+     * @param project the project
+     * @param r       the r
+     */
     public static void runWhenInitialized(final Project project, final Runnable r) {
         if (project.isDisposed())
             return;
@@ -42,6 +48,12 @@ public class ProjectInitializationHandler {
         runDumbAware(project, r);
     }
 
+    /**
+     * Run dumb aware.
+     *
+     * @param project the project
+     * @param r       the r
+     */
     public static void runDumbAware(final Project project, final Runnable r) {
         if (DumbService.isDumbAware(r)) {
             r.run();
