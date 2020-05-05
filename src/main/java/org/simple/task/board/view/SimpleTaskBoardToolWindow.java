@@ -14,7 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board;
+package org.simple.task.board.view;
+
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.wm.ToolWindow;
+
+import javax.swing.*;
 
 /**
  * @project simple-task-board
@@ -22,5 +27,15 @@ package org.simple.task.board;
  * <p>
  * @author Alexander A. Kropotin
  */
-public class SimpleTaskBoardToolWindow {
+public class SimpleTaskBoardToolWindow extends JFrame {
+
+    JPanel simpleTaskBoardPanel;
+
+    public SimpleTaskBoardToolWindow(Project project, ToolWindow toolWindow) {
+
+    }
+
+    public JPanel getContent() {
+        return this.simpleTaskBoardPanel;
+    }
 }

@@ -13,7 +13,8 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
+        <toolWindow id="ToolWindowForm" secondary="true" icon="AllIcons.General.Modified" anchor="right"
+                    factoryClass="org.simple.task.board.stub.SimpleTaskBoardInitializer"/>
     </extensions>
 
     <actions>
