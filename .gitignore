@@ -1,0 +1,20 @@
+# compiled class files
+*.class
+build/*
+
+# package files
+*.jar
+
+# virtual machine crash logs
+hs_err_pid*
+
+# intelliJ IDEA files
+.idea/*
+.gradle
+*.iml
+
+# all hidden files
+.*
+
+#exclude
+!.gitignore
