@@ -30,21 +30,25 @@ import javax.swing.*;
  * <p>
  * @author Alexander A. Kropotin
  */
-public class SimpleTaskBoardPanel extends SimpleToolWindowPanel {
+public class SimpleTaskBoardToolWindowPanel extends SimpleToolWindowPanel {
 
     /**
      * The constant ID.
      */
     public static final String ID = "SimpleTaskBoard";
 
+    private SimpleTaskBoardTablePanel simpleTaskBoardTablePanel;
+
     /**
      * Instantiates a new Simple task board panel.
      *
      * @param project the project
      */
-    public SimpleTaskBoardPanel(Project project) {
+    public SimpleTaskBoardToolWindowPanel(Project project) {
         super(true, true);
-        setContent(ScrollPaneFactory.createScrollPane(new JTable()));
+        this.simpleTaskBoardTablePanel = new SimpleTaskBoardTablePanel();
+        //setContent(this.simpleTaskBoardTablePanel);
+        setContent(ScrollPaneFactory.createScrollPane(this.simpleTaskBoardTablePanel));
 
     }
 

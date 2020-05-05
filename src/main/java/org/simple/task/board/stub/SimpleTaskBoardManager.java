@@ -27,7 +27,7 @@ import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.content.ContentManager;
 import org.jetbrains.annotations.NotNull;
-import org.simple.task.board.view.SimpleTaskBoardPanel;
+import org.simple.task.board.view.SimpleTaskBoardToolWindowPanel;
 
 /**
  * @project simple-task-board
@@ -39,7 +39,7 @@ public class SimpleTaskBoardManager implements ProjectComponent {
 
     private final Project project;
 
-    private final SimpleTaskBoardPanel panel;
+    private final SimpleTaskBoardToolWindowPanel panel;
 
     /**
      * Instantiates a new Simple task board manager.
@@ -48,7 +48,7 @@ public class SimpleTaskBoardManager implements ProjectComponent {
      */
     protected SimpleTaskBoardManager(@NotNull final Project project) {
        this.project = project;
-       this.panel = new SimpleTaskBoardPanel(project);
+       this.panel = new SimpleTaskBoardToolWindowPanel(project);
     }
 
     @Override
@@ -63,11 +63,14 @@ public class SimpleTaskBoardManager implements ProjectComponent {
 
     private void initToolWindow() {
         final ToolWindowManagerEx manager = ToolWindowManagerEx.getInstanceEx(this.project);
-        ToolWindowEx myToolWindow = (ToolWindowEx) manager.registerToolWindow(SimpleTaskBoardPanel.ID, false, ToolWindowAnchor.RIGHT, this.project, true);
-        myToolWindow.setIcon(IconLoader.findIcon("/icons/jesterhat.png"));
+        ToolWindowEx simpleTaskBoardToolWindow = (ToolWindowEx) manager.registerToolWindow(SimpleTaskBoardToolWindowPanel.ID, false, ToolWindowAnchor.RIGHT, this.project, true);
         final ContentFactory contentFactory = ServiceManager.getService(ContentFactory.class);
-        final Content content = contentFactory.createContent(panel.getComponent(), "", false);
-        ContentManager contentManager = myToolWindow.getContentManager();
+        final Content content = contentFactory.createContent(
+                panel.getComponent(),
+                project.getName(),
+                false
+        );
+        ContentManager contentManager = simpleTaskBoardToolWindow.getContentManager();
         contentManager.addContent(content);
     }
 }

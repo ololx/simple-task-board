@@ -16,39 +16,23 @@
  */
 package org.simple.task.board.view;
 
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.wm.ToolWindow;
+import com.intellij.ui.components.JBPanel;
+import com.intellij.ui.table.JBTable;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  * @project simple-task-board
- * @created 05.05.2020 08:37
+ * @created 05.05.2020 18:02
  * <p>
  * @author Alexander A. Kropotin
  */
-public class SimpleTaskBoardToolWindow extends JFrame {
+public class SimpleTaskBoardTable extends JTable {
 
-    /**
-     * The Simple task board panel.
-     */
-    JPanel simpleTaskBoardPanel;
+    public SimpleTaskBoardTable(TableModel tableModel) {
+        super(tableModel);
 
-    /**
-     * Instantiates a new Simple task board tool window.
-     *
-     * @param project    the project
-     * @param toolWindow the tool window
-     */
-    public SimpleTaskBoardToolWindow(Project project, ToolWindow toolWindow) {
-    }
-
-    /**
-     * Gets content.
-     *
-     * @return the content
-     */
-    public JPanel getContent() {
-        return this.simpleTaskBoardPanel;
     }
 }
