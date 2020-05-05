@@ -1,4 +1,4 @@
-# compiled class files
+# compiled files
 *.class
 build/*
 
@@ -10,8 +10,13 @@ hs_err_pid*
 
 # intelliJ IDEA files
 .idea/*
-.gradle
 *.iml
+
+# gradle files
+.gradle/*
+gradle/*
+gradlew.bat
+gradlew
 
 # all hidden files
 .*
