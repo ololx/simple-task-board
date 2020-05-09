@@ -20,11 +20,15 @@ import com.intellij.openapi.actionSystem.DataKey;
 import com.intellij.ui.table.JBTable;
 
 /**
- * @project simple-task-board
- * @created 06.05.2020 18:41
- * <p>
+ * The type Processes data keys.
+ *
  * @author Alexander A. Kropotin
+ * @project simple -task-board
+ * @created 06.05.2020 18:41 <p>
  */
 public class ProcessesDataKeys {
+    /**
+     * The constant PROCESSES_TASKS.
+     */
     public static final DataKey<JBTable> PROCESSES_TASKS = DataKey.create("PROCESSES_TASKS");
 }

@@ -14,24 +14,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board.actions;
+package org.simple.task.board.ui;
 
-import com.intellij.notification.Notification;
-import com.intellij.notification.NotificationType;
-import com.intellij.notification.Notifications;
-import com.intellij.openapi.actionSystem.AnAction;
-import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.ui.table.JBTable;
+
+import javax.swing.table.TableModel;
 
 /**
- * @project simple-task-board
- * @created 06.05.2020 10:59
- * <p>
+ * The type Simple task board table.
+ *
  * @author Alexander A. Kropotin
+ * @project simple -task-board
+ * @created 05.05.2020 18:02 <p>
  */
-public class CommonAction extends AnAction {
+public class SimpleTaskBoardTable extends JBTable {
 
-    @Override
-    public void actionPerformed(AnActionEvent e) {
-        Notifications.Bus.notify(new Notification("", "header", "Common action", NotificationType.INFORMATION));
+    /**
+     * Instantiates a new Simple task board table.
+     */
+    public SimpleTaskBoardTable() {
+    }
+
+    /**
+     * Instantiates a new Simple task board table.
+     *
+     * @param tableModel the table model
+     */
+    public SimpleTaskBoardTable(TableModel tableModel) {
+        super(tableModel);
     }
 }

@@ -21,18 +21,33 @@ import com.intellij.ui.IconManager;
 import javax.swing.*;
 
 /**
- * @project simple-task-board
- * @created 09.05.2020 14:05
- * <p>
+ * The type Simple task board icons.
+ *
  * @author Alexander A. Kropotin
+ * @project simple -task-board
+ * @created 09.05.2020 14:05 <p>
  */
 public final class SimpleTaskBoardIcons {
 
+    /**
+     * The type Tool bar actions.
+     */
     public static class ToolBarActions {
 
-    /* 16x16*/ public static final Icon Add = load("/icons/tool-bar/AddNewTask.svg");
+        /**
+         * The constant AddNewTask.
+         */
+        /* 16x16*/ public static final Icon AddNewTask = load("/icons/AddNewTask.svg");
+
+        /**
+         * The constant DeleteTasks.
+         */
+        /* 16x16*/ public static final Icon DeleteTasks = load("/icons/DeleteTasks.svg");
     }
 
+    /**
+     * Instantiates a new Simple task board icons.
+     */
     public SimpleTaskBoardIcons() {
     }
 

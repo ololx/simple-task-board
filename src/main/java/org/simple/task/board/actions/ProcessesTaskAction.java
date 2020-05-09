@@ -25,14 +25,21 @@ import com.intellij.ui.table.JBTable;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * @project simple-task-board
- * @created 06.05.2020 18:40
- * <p>
+ * The type Processes task action.
+ *
  * @author Alexander A. Kropotin
+ * @project simple -task-board
+ * @created 06.05.2020 18:40 <p>
  */
 public class ProcessesTaskAction extends AnAction {
 
-    public static JBTable getTree(AnActionEvent e){
+    /**
+     * Get event component jb table.
+     *
+     * @param e the e
+     * @return the jb table
+     */
+    public static JBTable getEventComponent(AnActionEvent e){
         return ProcessesDataKeys.PROCESSES_TASKS.getData(e.getDataContext());
     }
 

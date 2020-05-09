@@ -23,18 +23,18 @@ import com.intellij.ui.table.JBTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * The type Add new task action.
+ * The type Delete task action.
  *
  * @author Alexander A. Kropotin
  * @project simple -task-board
  * @created 09.05.2020 14:24 <p>
  */
-public class AddNewTaskAction extends AnAction {
+public class DeleteTaskAction extends AnAction {
 
     /**
      * The constant ID.
      */
-    public static final String ID = "SimpleTaskBoard.ToolBar.AddNewTask";
+    public static final String ID = "SimpleTaskBoard.ToolBar.DeleteTask";
 
     @Override
     public void actionPerformed(AnActionEvent e) {
@@ -42,13 +42,15 @@ public class AddNewTaskAction extends AnAction {
         if (table == null) return;
 
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-
         int[] selectedRowIndexes = table.getSelectedRows();
 
         if (selectedRowIndexes.length == 0) {
-            model.addRow(new Object[table.getColumnCount()]);
+            model.removeRow(table.getRowCount() - 1);
         } else {
-            model.insertRow(selectedRowIndexes[selectedRowIndexes.length - 1], new Object[table.getColumnCount()]);
+            for (int i = selectedRowIndexes.length - 1; i >= 0; i--) {
+                System.err.println(i + ") " + model.getValueAt(i, 0));
+                model.removeRow(selectedRowIndexes[i]);
+            }
         }
     }
 }

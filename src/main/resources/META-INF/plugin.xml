@@ -15,23 +15,30 @@
 
     <project-components>
         <component>
-            <implementation-class>org.simple.task.board.stub.SimpleTaskBoardManager</implementation-class>
+            <implementation-class>org.simple.task.board.stub.SimpleTaskBoardInitializer</implementation-class>
         </component>
     </project-components>
 
     <extensions defaultExtensionNs="com.intellij">
 
     </extensions>
-
     <actions>
-        <action class="org.simple.task.board.actions.CommonAction" id="SimpleTaskBoard.CommonAction" icon="AllIcons.Actions.Restart"
-                text="CommonAction" description="CommonAction"/>
-        <action id="SimpleTaskBoard.New" class="org.simple.task.board.actions.AddNewTaskAction"
-                icon="SimpleTaskBoardIcons.ToolBarActions.Add" text="New"/>
-        <group id="SimpleTaskBoard.ProcessesToolbar">
-            <reference id="SimpleTaskBoard.CommonAction"/>
+        <action id="SimpleTaskBoard.ToolBar.AddNewTask" class="org.simple.task.board.actions.AddNewTaskAction"
+                icon="SimpleTaskBoardIcons.ToolBarActions.AddNewTask" text="Add new task"
+                description="This is an action for the creating new task on board" keymap="$default">
+            <keyboard-shortcut first-keystroke="control alt N" keymap="$default"/>
+            <mouse-shortcut keystroke="control button3 doubleClick" keymap="$default"/>
+        </action>
+        <action id="SimpleTaskBoard.ToolBar.DeleteTask" class="org.simple.task.board.actions.DeleteTaskAction"
+                icon="SimpleTaskBoardIcons.ToolBarActions.DeleteTasks" text="Delete tasks"
+                description="This is an action for the deleting task on board" keymap="$default">
+            <keyboard-shortcut first-keystroke="control alt D" keymap="$default"/>
+            <mouse-shortcut keystroke="alt button3 doubleClick" keymap="$default"/>
+        </action>
+        <group id="SimpleTaskBoard.ToolBar">
+            <reference id="SimpleTaskBoard.ToolBar.AddNewTask"/>
             <separator/>
-            <reference id="SimpleTaskBoard.New"/>
+            <reference id="SimpleTaskBoard.ToolBar.DeleteTask"/>
         </group>
     </actions>
 </idea-plugin>

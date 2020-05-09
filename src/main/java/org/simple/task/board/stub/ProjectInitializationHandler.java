@@ -22,43 +22,44 @@ import com.intellij.openapi.startup.StartupManager;
 import com.intellij.util.DisposeAwareRunnable;
 
 /**
- * @project simple-task-board
- * @created 05.05.2020 09:12
- * <p>
+ * The type Project initialization handler.
+ *
  * @author Alexander A. Kropotin
+ * @project simple -task-board
+ * @created 05.05.2020 09:12 <p>
  */
 public class ProjectInitializationHandler {
 
     /**
      * Run when initialized.
      *
-     * @param project the project
-     * @param r       the r
+     * @param project  the project
+     * @param runnable the runnable
      */
-    public static void runWhenInitialized(final Project project, final Runnable r) {
+    public static void runWhenInitialized(final Project project, final Runnable runnable) {
         if (project.isDisposed())
             return;
 
         if (!project.isInitialized()) {
-            StartupManager.getInstance(project).registerPostStartupActivity(DisposeAwareRunnable.create(r, project));
+            StartupManager.getInstance(project).registerPostStartupActivity(DisposeAwareRunnable.create(runnable, project));
 
             return;
         }
 
-        runDumbAware(project, r);
+        runDumbAware(project, runnable);
     }
 
     /**
      * Run dumb aware.
      *
-     * @param project the project
-     * @param r       the r
+     * @param project  the project
+     * @param runnable the runnable
      */
-    public static void runDumbAware(final Project project, final Runnable r) {
-        if (DumbService.isDumbAware(r)) {
-            r.run();
+    public static void runDumbAware(final Project project, final Runnable runnable) {
+        if (DumbService.isDumbAware(runnable)) {
+            runnable.run();
         } else {
-            DumbService.getInstance(project).runWhenSmart(DisposeAwareRunnable.create(r, project));
+            DumbService.getInstance(project).runWhenSmart(DisposeAwareRunnable.create(runnable, project));
         }
     }
 }

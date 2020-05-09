@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board.view;
+package org.simple.task.board.ui;
 
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.ActionToolbar;
@@ -26,13 +26,14 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 import org.simple.task.board.actions.ProcessesDataKeys;
 
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
- * @project simple-task-board
- * @created 05.05.2020 14:44
- * <p>
+ * The type Simple task board tool window.
+ *
  * @author Alexander A. Kropotin
+ * @project simple -task-board
+ * @created 05.05.2020 14:44 <p>
  */
 public class SimpleTaskBoardToolWindow extends SimpleToolWindowPanel {
 
@@ -50,19 +51,26 @@ public class SimpleTaskBoardToolWindow extends SimpleToolWindowPanel {
      */
     public SimpleTaskBoardToolWindow(Project project) {
         super(true, true);
-        Object[] columnNames = {"number", "state", "content"};
-        Object[][] data = new Object[5][3];
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-
-        for (int i = 0; i < 5; i++) {
-            model.addRow(new Object[]{"1", "2", "3"});
-        }
-
-        this.simpleTaskBoardToolWindowPanel = new SimpleTaskBoardTable(model);
-        //setContent(this.simpleTaskBoardTablePanel);
+        this.simpleTaskBoardToolWindowPanel = new SimpleTaskBoardTable();
         final ActionManager actionManager = ActionManager.getInstance();
-        ActionToolbar actionToolbar = actionManager.createActionToolbar("SimpleTaskBoard Processes Toolbar",
-                (DefaultActionGroup) actionManager.getAction("SimpleTaskBoard.ProcessesToolbar"), true);
+        ActionToolbar actionToolbar = actionManager.createActionToolbar("SimpleTaskBoard Toolbar",
+                (DefaultActionGroup) actionManager.getAction("SimpleTaskBoard.ToolBar"), true);
+        setToolbar(actionToolbar.getComponent());
+        setContent(ScrollPaneFactory.createScrollPane(this.simpleTaskBoardToolWindowPanel));
+    }
+
+    /**
+     * Instantiates a new Simple task board tool window.
+     *
+     * @param project        the project
+     * @param taskBoardModel the task board model
+     */
+    public SimpleTaskBoardToolWindow(Project project, TableModel taskBoardModel) {
+        super(true, true);
+        this.simpleTaskBoardToolWindowPanel = new SimpleTaskBoardTable(taskBoardModel);
+        final ActionManager actionManager = ActionManager.getInstance();
+        ActionToolbar actionToolbar = actionManager.createActionToolbar("SimpleTaskBoard Toolbar",
+                (DefaultActionGroup) actionManager.getAction("SimpleTaskBoard.ToolBar"), true);
         setToolbar(actionToolbar.getComponent());
         setContent(ScrollPaneFactory.createScrollPane(this.simpleTaskBoardToolWindowPanel));
     }

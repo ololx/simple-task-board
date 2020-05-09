@@ -26,15 +26,18 @@ import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.content.ContentManager;
 import org.jetbrains.annotations.NotNull;
-import org.simple.task.board.view.SimpleTaskBoardToolWindow;
+import org.simple.task.board.ui.SimpleTaskBoardToolWindow;
+
+import javax.swing.table.DefaultTableModel;
 
 /**
- * @project simple-task-board
- * @created 05.05.2020 14:47
- * <p>
+ * The type Simple task board initializer.
+ *
  * @author Alexander A. Kropotin
+ * @project simple -task-board
+ * @created 05.05.2020 14:47 <p>
  */
-public class SimpleTaskBoardManager implements ProjectComponent {
+public class SimpleTaskBoardInitializer implements ProjectComponent {
 
     private final Project project;
 
@@ -45,9 +48,17 @@ public class SimpleTaskBoardManager implements ProjectComponent {
      *
      * @param project the project
      */
-    protected SimpleTaskBoardManager(@NotNull final Project project) {
+    protected SimpleTaskBoardInitializer(@NotNull final Project project) {
        this.project = project;
-       this.panel = new SimpleTaskBoardToolWindow(project);
+        Object[] columnNames = {"number", "state", "content"};
+        Object[][] data = new Object[5][3];
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+        for (int i = 0; i < 5; i++) {
+            model.addRow(new Object[]{i*1, i*2, i*3});
+        }
+
+       this.panel = new SimpleTaskBoardToolWindow(project, model);
     }
 
     @Override
@@ -62,7 +73,13 @@ public class SimpleTaskBoardManager implements ProjectComponent {
 
     private void initToolWindow() {
         final ToolWindowManagerEx manager = ToolWindowManagerEx.getInstanceEx(this.project);
-        ToolWindowEx simpleTaskBoardToolWindow = (ToolWindowEx) manager.registerToolWindow(SimpleTaskBoardToolWindow.ID, false, ToolWindowAnchor.RIGHT, this.project, true);
+        ToolWindowEx simpleTaskBoardToolWindow = (ToolWindowEx) manager.registerToolWindow(
+                SimpleTaskBoardToolWindow.ID,
+                false,
+                ToolWindowAnchor.RIGHT,
+                this.project,
+                true
+        );
         final ContentFactory contentFactory = ServiceManager.getService(ContentFactory.class);
         final Content content = contentFactory.createContent(
                 panel.getComponent(),
