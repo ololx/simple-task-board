@@ -16,11 +16,17 @@
  */
 package org.simple.task.board.view;
 
+import com.intellij.openapi.actionSystem.ActionManager;
+import com.intellij.openapi.actionSystem.ActionToolbar;
+import com.intellij.openapi.actionSystem.DefaultActionGroup;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
 import com.intellij.ui.ScrollPaneFactory;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
+import org.simple.task.board.actions.ProcessesDataKeys;
+
+import javax.swing.table.DefaultTableModel;
 
 /**
  * @project simple-task-board
@@ -35,7 +41,7 @@ public class SimpleTaskBoardToolWindow extends SimpleToolWindowPanel {
      */
     public static final String ID = "SimpleTaskBoard";
 
-    private SimpleTaskBoardToolWindowPanel simpleTaskBoardToolWindowPanel;
+    private SimpleTaskBoardTable simpleTaskBoardToolWindowPanel;
 
     /**
      * Instantiates a new Simple task board panel.
@@ -44,13 +50,29 @@ public class SimpleTaskBoardToolWindow extends SimpleToolWindowPanel {
      */
     public SimpleTaskBoardToolWindow(Project project) {
         super(true, true);
-        this.simpleTaskBoardToolWindowPanel = new SimpleTaskBoardToolWindowPanel();
+        Object[] columnNames = {"number", "state", "content"};
+        Object[][] data = new Object[5][3];
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+        for (int i = 0; i < 5; i++) {
+            model.addRow(new Object[]{"1", "2", "3"});
+        }
+
+        this.simpleTaskBoardToolWindowPanel = new SimpleTaskBoardTable(model);
         //setContent(this.simpleTaskBoardTablePanel);
+        final ActionManager actionManager = ActionManager.getInstance();
+        ActionToolbar actionToolbar = actionManager.createActionToolbar("SimpleTaskBoard Processes Toolbar",
+                (DefaultActionGroup) actionManager.getAction("SimpleTaskBoard.ProcessesToolbar"), true);
+        setToolbar(actionToolbar.getComponent());
         setContent(ScrollPaneFactory.createScrollPane(this.simpleTaskBoardToolWindowPanel));
     }
 
     @Nullable
     public Object getData(@NonNls String dataId) {
+        if (ProcessesDataKeys.PROCESSES_TASKS.is(dataId)) {
+            return this.simpleTaskBoardToolWindowPanel;
+        }
+
         return super.getData(dataId);
     }
 }

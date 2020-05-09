@@ -12,6 +12,7 @@
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
 
+
     <project-components>
         <component>
             <implementation-class>org.simple.task.board.stub.SimpleTaskBoardManager</implementation-class>
@@ -19,9 +20,18 @@
     </project-components>
 
     <extensions defaultExtensionNs="com.intellij">
+
     </extensions>
 
     <actions>
-        <!-- Add your actions here -->
+        <action class="org.simple.task.board.actions.CommonAction" id="SimpleTaskBoard.CommonAction" icon="AllIcons.Actions.Restart"
+                text="CommonAction" description="CommonAction"/>
+        <action id="SimpleTaskBoard.New" class="org.simple.task.board.actions.AddNewTaskAction"
+                icon="SimpleTaskBoardIcons.ToolBarActions.Add" text="New"/>
+        <group id="SimpleTaskBoard.ProcessesToolbar">
+            <reference id="SimpleTaskBoard.CommonAction"/>
+            <separator/>
+            <reference id="SimpleTaskBoard.New"/>
+        </group>
     </actions>
 </idea-plugin>

@@ -14,26 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board.view;
+package org.simple.task.board.actions;
 
-import com.intellij.ui.components.JBPanel;
-
-import java.awt.*;
+import com.intellij.openapi.actionSystem.DataKey;
+import com.intellij.ui.table.JBTable;
 
 /**
  * @project simple-task-board
- * @created 05.05.2020 19:07
+ * @created 06.05.2020 18:41
  * <p>
  * @author Alexander A. Kropotin
  */
-public class SimpleTaskBoardToolWindowPanel extends JBPanel {
-
-    private SimpleTaskBoardTablePanel simpleTaskBoardTablePanel;
-
-    public SimpleTaskBoardToolWindowPanel() {
-        super();
-        setLayout(new BorderLayout());
-        this.simpleTaskBoardTablePanel = new SimpleTaskBoardTablePanel();
-        add(this.simpleTaskBoardTablePanel);
-    }
+public class ProcessesDataKeys {
+    public static final DataKey<JBTable> PROCESSES_TASKS = DataKey.create("PROCESSES_TASKS");
 }
