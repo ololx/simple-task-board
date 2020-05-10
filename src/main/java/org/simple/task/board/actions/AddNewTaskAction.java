@@ -19,8 +19,12 @@ package org.simple.task.board.actions;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.ui.table.JBTable;
+import org.simple.task.board.model.StbBoard;
 
 import javax.swing.table.DefaultTableModel;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import java.io.File;
 
 /**
  * The type Add new task action.

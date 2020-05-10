@@ -26,9 +26,14 @@ import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.content.ContentManager;
 import org.jetbrains.annotations.NotNull;
+import org.simple.task.board.model.StbBoard;
 import org.simple.task.board.ui.SimpleTaskBoardToolWindow;
 
 import javax.swing.table.DefaultTableModel;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
+import java.io.FileReader;
 
 /**
  * The type Simple task board initializer.

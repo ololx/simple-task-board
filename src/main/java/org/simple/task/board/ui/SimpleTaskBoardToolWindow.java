@@ -25,8 +25,17 @@ import com.intellij.ui.ScrollPaneFactory;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 import org.simple.task.board.actions.ProcessesDataKeys;
+import org.simple.task.board.model.StbBoard;
+import org.simple.task.board.model.StbBoardItem;
+import org.simple.task.board.model.StbComponent;
+import org.simple.task.board.model.StbProject;
 
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
+import java.io.FileReader;
 
 /**
  * The type Simple task board tool window.
@@ -73,6 +82,48 @@ public class SimpleTaskBoardToolWindow extends SimpleToolWindowPanel {
                 (DefaultActionGroup) actionManager.getAction("SimpleTaskBoard.ToolBar"), true);
         setToolbar(actionToolbar.getComponent());
         setContent(ScrollPaneFactory.createScrollPane(this.simpleTaskBoardToolWindowPanel));
+
+        try {
+            // create JAXB context and instantiate marshaller
+            JAXBContext context = JAXBContext.newInstance(StbProject.class);
+
+            File file = new File(project.getBasePath() + "/.idea/simpleTaskBoard.xml");
+            if (file.createNewFile()) {
+                System.out.println("File created: " + file.getName());
+            } else {
+                System.out.println("File already exists. " + file.getPath());
+            }
+
+            // (2) Unmarshaller : Read XML content to Java Object.
+            Unmarshaller um = context.createUnmarshaller();
+
+            // XML file create before.
+            StbProject deptFromFile = (StbProject) um.unmarshal(new FileReader(file));
+
+            if (deptFromFile == null) return;
+
+            StbComponent component = deptFromFile.getComponent();
+
+            if (component == null) return;
+
+            StbBoard board = component.getBoard();
+
+            if (board == null) return;
+
+            StbBoardItem[] items = board.getItems();
+
+            if (items == null) return;
+
+            for (StbBoardItem item : items) {
+                System.err.println(item.getId() + " " + item.getState() + " " + item.getName());
+                ((DefaultTableModel) simpleTaskBoardToolWindowPanel.getModel()).insertRow(0, new Object[]{
+                        item.getId(), item.getState(), item.getName()
+                });
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Nullable
