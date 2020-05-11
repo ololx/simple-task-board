@@ -55,15 +55,7 @@ public class SimpleTaskBoardInitializer implements ProjectComponent {
      */
     protected SimpleTaskBoardInitializer(@NotNull final Project project) {
        this.project = project;
-        Object[] columnNames = {"number", "state", "content"};
-        Object[][] data = new Object[5][3];
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-
-        for (int i = 0; i < 5; i++) {
-            model.addRow(new Object[]{i*1, i*2, i*3});
-        }
-
-       this.panel = new SimpleTaskBoardToolWindow(project, model);
+       this.panel = new SimpleTaskBoardToolWindow(project);
     }
 
     @Override

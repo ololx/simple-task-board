@@ -18,6 +18,7 @@ package org.simple.task.board.ui;
 
 import com.intellij.ui.table.JBTable;
 
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -33,6 +34,9 @@ public class SimpleTaskBoardTable extends JBTable {
      * Instantiates a new Simple task board table.
      */
     public SimpleTaskBoardTable() {
+        Object[] columnNames = {"number", "state", "name"};
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+        setModel(model);
     }
 
     /**

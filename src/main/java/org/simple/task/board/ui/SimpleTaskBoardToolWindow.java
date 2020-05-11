@@ -27,13 +27,14 @@ import org.jetbrains.annotations.Nullable;
 import org.simple.task.board.actions.ProcessesDataKeys;
 import org.simple.task.board.model.StbBoard;
 import org.simple.task.board.model.StbBoardItem;
-import org.simple.task.board.model.StbComponent;
-import org.simple.task.board.model.StbProject;
+import org.simple.task.board.util.StbBoardUtil;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 import java.io.FileReader;
 
@@ -61,69 +62,37 @@ public class SimpleTaskBoardToolWindow extends SimpleToolWindowPanel {
     public SimpleTaskBoardToolWindow(Project project) {
         super(true, true);
         this.simpleTaskBoardToolWindowPanel = new SimpleTaskBoardTable();
-        final ActionManager actionManager = ActionManager.getInstance();
-        ActionToolbar actionToolbar = actionManager.createActionToolbar("SimpleTaskBoard Toolbar",
-                (DefaultActionGroup) actionManager.getAction("SimpleTaskBoard.ToolBar"), true);
-        setToolbar(actionToolbar.getComponent());
-        setContent(ScrollPaneFactory.createScrollPane(this.simpleTaskBoardToolWindowPanel));
-    }
 
-    /**
-     * Instantiates a new Simple task board tool window.
-     *
-     * @param project        the project
-     * @param taskBoardModel the task board model
-     */
-    public SimpleTaskBoardToolWindow(Project project, TableModel taskBoardModel) {
-        super(true, true);
-        this.simpleTaskBoardToolWindowPanel = new SimpleTaskBoardTable(taskBoardModel);
-        final ActionManager actionManager = ActionManager.getInstance();
-        ActionToolbar actionToolbar = actionManager.createActionToolbar("SimpleTaskBoard Toolbar",
-                (DefaultActionGroup) actionManager.getAction("SimpleTaskBoard.ToolBar"), true);
-        setToolbar(actionToolbar.getComponent());
-        setContent(ScrollPaneFactory.createScrollPane(this.simpleTaskBoardToolWindowPanel));
-
-        try {
-            // create JAXB context and instantiate marshaller
-            JAXBContext context = JAXBContext.newInstance(StbProject.class);
-
-            File file = new File(project.getBasePath() + "/.idea/simpleTaskBoard.xml");
-            if (file.createNewFile()) {
-                System.out.println("File created: " + file.getName());
-            } else {
-                System.out.println("File already exists. " + file.getPath());
-            }
-
-            // (2) Unmarshaller : Read XML content to Java Object.
-            Unmarshaller um = context.createUnmarshaller();
-
-            // XML file create before.
-            StbProject deptFromFile = (StbProject) um.unmarshal(new FileReader(file));
-
-            if (deptFromFile == null) return;
-
-            StbComponent component = deptFromFile.getComponent();
-
-            if (component == null) return;
-
-            StbBoard board = component.getBoard();
+        if (StbBoardUtil.chekStbBoardExistance(project.getBasePath())) {
+            StbBoard board = StbBoardUtil.loadBoard(project.getBasePath());
 
             if (board == null) return;
 
-            StbBoardItem[] items = board.getItems();
+            if (board.getItems() == null) return;
 
-            if (items == null) return;
-
-            for (StbBoardItem item : items) {
-                System.err.println(item.getId() + " " + item.getState() + " " + item.getName());
-                ((DefaultTableModel) simpleTaskBoardToolWindowPanel.getModel()).insertRow(0, new Object[]{
-                        item.getId(), item.getState(), item.getName()
+            for (StbBoardItem item : board.getItems()) {
+                ((DefaultTableModel) this.simpleTaskBoardToolWindowPanel.getModel()).addRow(new Object[]{
+                        item.getId(),
+                        item.getState(),
+                        item.getName(),
                 });
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
+            StbBoard board = new StbBoard();
+            board.setName(project.getName());
+            StbBoardUtil.saveBoard(project.getBasePath(), board);
+
+            for (int i = 0; i < 3; i++) {
+                ((DefaultTableModel) this.simpleTaskBoardToolWindowPanel.getModel()).addRow(new Object[]{"", "", ""});
+            }
         }
+
+        final ActionManager actionManager = ActionManager.getInstance();
+        ActionToolbar actionToolbar = actionManager.createActionToolbar("SimpleTaskBoard Toolbar",
+                (DefaultActionGroup) actionManager.getAction("SimpleTaskBoard.ToolBar"), true);
+        setToolbar(actionToolbar.getComponent());
+        setContent(ScrollPaneFactory.createScrollPane(this.simpleTaskBoardToolWindowPanel));
     }
 
     @Nullable

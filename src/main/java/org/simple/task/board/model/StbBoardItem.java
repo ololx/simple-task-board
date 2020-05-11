@@ -33,11 +33,14 @@ public class StbBoardItem {
 
     String name;
 
+    public StbBoardItem() {
+    }
+
     public Long getId() {
         return this.id;
     }
 
-    @XmlAttribute
+    @XmlAttribute(name = "id")
     public void setId(Long id) {
         this.id = id;
     }
@@ -46,7 +49,7 @@ public class StbBoardItem {
         return this.state;
     }
 
-    @XmlElement(name = "state")
+    @XmlAttribute(name = "state")
     public void setState(String state) {
         this.state = state;
     }
@@ -55,8 +58,18 @@ public class StbBoardItem {
         return this.name;
     }
 
-    @XmlElement(name = "name")
+    @XmlValue
     public void setName(String name) {
-        this.name = name;
+        this.name = name != null ? name.trim() : null;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "[id: %s,%nstate: %s, name: %s]",
+                this.id,
+                this.state,
+                this.name
+        );
     }
 }

@@ -17,6 +17,10 @@
 package org.simple.task.board.model;
 
 import javax.xml.bind.annotation.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @project simple-task-board
@@ -24,12 +28,16 @@ import javax.xml.bind.annotation.*;
  * <p>
  * @author Alexander A. Kropotin
  */
+@XmlRootElement(name = "board")
 @XmlType(name = "board")
 public class StbBoard {
 
     String name;
 
-    StbBoardItem[] items;
+    List<StbBoardItem> items;
+
+    public StbBoard() {
+    }
 
     public String getName() {
         return this.name;
@@ -40,18 +48,24 @@ public class StbBoard {
         this.name = name;
     }
 
-    public StbBoardItem[] getItems() {
+    public List<StbBoardItem> getItems() {
         return this.items;
     }
 
     @XmlElementWrapper(name = "items")
     @XmlElement(name = "item")
-    public void setItems(StbBoardItem[] items) {
+    public void setItems(List<StbBoardItem> items) {
         this.items = items;
     }
 
     @Override
     public String toString() {
-        return String.format("name = %s, items:\n%s", this.name, this.items);
+        return String.format(
+                "[name: %s,%nitems: [%n%s%n]",
+                this.name,
+                this.items.stream()
+                        .map(eachItem -> eachItem.toString())
+                        .collect(Collectors.joining(",%n"))
+        );
     }
 }

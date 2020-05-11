@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<project version="4">
-    <component name="SimpleTaskBoardData">
-        <board name="T">
-            <items>
-                <item id="1">
-                    <state>done</state>
-                    <name>Task 1</name>
-                </item>
-                <item id="2">
-                    <state>in progress</state>
-                    <name>Task 2</name>
-                </item>
-            </items>
-        </board>
-    </component>
-</project>
+<board name="">
+    <items>
+        <item id="1" state="done">
+            Task 1
+        </item>
+        <item id="2" state="in progress">
+            Task 2
+        </item>
+    </items>
+</board>

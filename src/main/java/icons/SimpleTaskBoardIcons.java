@@ -43,6 +43,11 @@ public final class SimpleTaskBoardIcons {
          * The constant DeleteTasks.
          */
         /* 16x16*/ public static final Icon DeleteTasks = load("/icons/DeleteTasks.svg");
+
+        /**
+         * The constant SaveTasks.
+         */
+        /* 16x16*/ public static final Icon SaveTasks = load("/icons/SaveTasks.svg");
     }
 
     /**
