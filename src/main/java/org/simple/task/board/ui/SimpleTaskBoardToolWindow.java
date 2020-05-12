@@ -37,6 +37,7 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 import java.io.FileReader;
+import java.util.Collections;
 
 /**
  * The type Simple task board tool window.
@@ -63,29 +64,26 @@ public class SimpleTaskBoardToolWindow extends SimpleToolWindowPanel {
         super(true, true);
         this.simpleTaskBoardToolWindowPanel = new SimpleTaskBoardTable();
 
-        if (StbBoardUtil.chekStbBoardExistance(project.getBasePath())) {
-            StbBoard board = StbBoardUtil.loadBoard(project.getBasePath());
 
-            if (board == null) return;
+        StbBoard board = null;
+        if (!StbBoardUtil.chekStbBoardExistance(project.getBasePath())) {
 
-            if (board.getItems() == null) return;
-
-            for (StbBoardItem item : board.getItems()) {
-                ((DefaultTableModel) this.simpleTaskBoardToolWindowPanel.getModel()).addRow(new Object[]{
-                        item.getId(),
-                        item.getState(),
-                        item.getName(),
-                });
-            }
-
-        } else {
-            StbBoard board = new StbBoard();
+            board = new StbBoard();
             board.setName(project.getName());
+            board.setItems(Collections.EMPTY_LIST);
             StbBoardUtil.saveBoard(project.getBasePath(), board);
+        } else {
+            board = StbBoardUtil.loadBoard(project.getBasePath());
+            if (board == null) board.setName(project.getName());
+            if (board.getItems() == null) board.setItems(Collections.EMPTY_LIST);
+        }
 
-            for (int i = 0; i < 3; i++) {
-                ((DefaultTableModel) this.simpleTaskBoardToolWindowPanel.getModel()).addRow(new Object[]{"", "", ""});
-            }
+        for (StbBoardItem item : board.getItems()) {
+            ((DefaultTableModel) this.simpleTaskBoardToolWindowPanel.getModel()).addRow(new Object[]{
+                    item.getId(),
+                    item.getState(),
+                    item.getName(),
+            });
         }
 
         final ActionManager actionManager = ActionManager.getInstance();
