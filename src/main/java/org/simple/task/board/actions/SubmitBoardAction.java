@@ -35,7 +35,7 @@ import java.util.Vector;
  * @project simple -task-board
  * @created 09.05.2020 14:24 <p>
  */
-public class SaveTasksAction extends AnAction {
+public class SubmitBoardAction extends AnAction {
 
     /**
      * The constant ID.
