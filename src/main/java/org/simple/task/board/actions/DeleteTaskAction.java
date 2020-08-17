@@ -48,7 +48,6 @@ public class DeleteTaskAction extends AnAction {
             model.removeRow(table.getRowCount() - 1);
         } else {
             for (int i = selectedRowIndexes.length - 1; i >= 0; i--) {
-                System.err.println(i + ") " + model.getValueAt(i, 0));
                 model.removeRow(selectedRowIndexes[i]);
             }
         }
