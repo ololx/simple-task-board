@@ -20,6 +20,7 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.ui.table.JBTable;
 import org.simple.task.board.model.StbBoard;
+import org.simple.task.board.ui.StbTable;
 
 import javax.swing.table.DefaultTableModel;
 import javax.xml.bind.JAXBContext;
@@ -42,11 +43,10 @@ public class AddTaskAction extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
-        JBTable table = ProcessesTaskAction.getEventComponent(e);
+        StbTable table = ProcessesTaskAction.getEventComponent(e);
         if (table == null) return;
 
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-
+        DefaultTableModel model = table.getModel();
         int[] selectedRowIndexes = table.getSelectedRows();
 
         if (selectedRowIndexes.length == 0) {

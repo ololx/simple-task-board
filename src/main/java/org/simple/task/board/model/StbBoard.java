@@ -17,8 +17,6 @@
 package org.simple.task.board.model;
 
 import javax.xml.bind.annotation.*;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,7 +32,7 @@ public class StbBoard {
 
     String name;
 
-    List<StbBoardItem> items;
+    List<StbItem> items;
 
     public StbBoard() {
     }
@@ -48,13 +46,13 @@ public class StbBoard {
         this.name = name;
     }
 
-    public List<StbBoardItem> getItems() {
+    public List<StbItem> getItems() {
         return this.items;
     }
 
     @XmlElementWrapper(name = "items")
     @XmlElement(name = "item")
-    public void setItems(List<StbBoardItem> items) {
+    public void setItems(List<StbItem> items) {
         this.items = items;
     }
 

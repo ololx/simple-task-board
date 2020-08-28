@@ -20,13 +20,14 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.ui.table.JBTable;
 import org.simple.task.board.model.StbBoard;
-import org.simple.task.board.model.StbBoardItem;
+import org.simple.task.board.model.StbItem;
+import org.simple.task.board.ui.StbTable;
 import org.simple.task.board.util.StbBoardUtil;
 
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Vector;
 
 /**
  * The type Add new task action.
@@ -44,25 +45,25 @@ public class SubmitBoardAction extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
-        JBTable table = ProcessesTaskAction.getEventComponent(e);
+        StbTable table = (StbTable) ProcessesTaskAction.getEventComponent(e);
         if (table == null) return;
 
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-
         StbBoard board = StbBoardUtil.loadBoard(e.getProject().getBasePath());
-
-        List<StbBoardItem> items = new ArrayList<>();
-        for (int i = 0; i < model.getRowCount(); i++) {
-            StbBoardItem item = new StbBoardItem();
-            item.setId(Long.valueOf(String.valueOf(model.getValueAt(i, 0))));
-            item.setState(String.valueOf(model.getValueAt(i, 1)));
-            item.setName(String.valueOf(model.getValueAt(i, 2)));
-
-            items.add(item);
-        }
-
-        board.setItems(items);
-
+        board.setItems(this.getItems(table.getModel()));
         StbBoardUtil.saveBoard(e.getProject().getBasePath(), board);
+    }
+
+    public List<StbItem> getItems(DefaultTableModel model) {
+        return new ArrayList<StbItem>(){{
+            for (int i = 0; i < model.getRowCount(); i++) {
+                add(
+                        new StbItem(
+                                Long.valueOf(String.valueOf(model.getValueAt(i, 0))),
+                                String.valueOf(model.getValueAt(i, 1)),
+                                String.valueOf(model.getValueAt(i, 2))
+                        )
+                );
+            }
+        }};
     }
 }

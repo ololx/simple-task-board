@@ -26,17 +26,10 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
 import org.simple.task.board.actions.ProcessesDataKeys;
 import org.simple.task.board.model.StbBoard;
-import org.simple.task.board.model.StbBoardItem;
+import org.simple.task.board.model.StbItem;
 import org.simple.task.board.util.StbBoardUtil;
 
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.transform.stream.StreamSource;
-import java.io.File;
-import java.io.FileReader;
 import java.util.Collections;
 
 /**
@@ -46,23 +39,23 @@ import java.util.Collections;
  * @project simple -task-board
  * @created 05.05.2020 14:44 <p>
  */
-public class SimpleTaskBoardToolWindow extends SimpleToolWindowPanel {
+public class StbToolWindow extends SimpleToolWindowPanel {
 
     /**
      * The constant ID.
      */
     public static final String ID = "SimpleTaskBoard";
 
-    private SimpleTaskBoardTable simpleTaskBoardToolWindowPanel;
+    private StbTable simpleTaskBoardToolWindowPanel;
 
     /**
      * Instantiates a new Simple task board panel.
      *
      * @param project the project
      */
-    public SimpleTaskBoardToolWindow(Project project) {
+    public StbToolWindow(Project project) {
         super(true, true);
-        this.simpleTaskBoardToolWindowPanel = new SimpleTaskBoardTable();
+        this.simpleTaskBoardToolWindowPanel = new StbTable();
 
 
         StbBoard board = null;
@@ -78,8 +71,8 @@ public class SimpleTaskBoardToolWindow extends SimpleToolWindowPanel {
             if (board.getItems() == null) board.setItems(Collections.EMPTY_LIST);
         }
 
-        for (StbBoardItem item : board.getItems()) {
-            ((DefaultTableModel) this.simpleTaskBoardToolWindowPanel.getModel()).addRow(new Object[]{
+        for (StbItem item : board.getItems()) {
+            (this.simpleTaskBoardToolWindowPanel.getModel()).addRow(new Object[]{
                     item.getId(),
                     item.getState(),
                     item.getName(),

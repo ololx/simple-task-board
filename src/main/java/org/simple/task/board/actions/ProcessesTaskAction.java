@@ -23,6 +23,7 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.ui.table.JBTable;
 import org.jetbrains.annotations.NotNull;
+import org.simple.task.board.ui.StbTable;
 
 /**
  * The type Processes task action.
@@ -39,8 +40,8 @@ public class ProcessesTaskAction extends AnAction {
      * @param e the e
      * @return the jb table
      */
-    public static JBTable getEventComponent(AnActionEvent e){
-        return ProcessesDataKeys.PROCESSES_TASKS.getData(e.getDataContext());
+    public static StbTable getEventComponent(AnActionEvent e){
+        return (StbTable) ProcessesDataKeys.PROCESSES_TASKS.getData(e.getDataContext());
     }
 
     @Override

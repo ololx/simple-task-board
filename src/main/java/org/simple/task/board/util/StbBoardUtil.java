@@ -17,9 +17,7 @@
 package org.simple.task.board.util;
 
 import org.simple.task.board.model.StbBoard;
-import org.simple.task.board.model.StbBoardItem;
 
-import javax.swing.table.DefaultTableModel;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;

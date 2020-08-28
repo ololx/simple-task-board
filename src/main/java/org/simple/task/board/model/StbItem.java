@@ -17,6 +17,7 @@
 package org.simple.task.board.model;
 
 import javax.xml.bind.annotation.*;
+import java.util.Objects;
 
 /**
  * @project simple-task-board
@@ -25,40 +26,50 @@ import javax.xml.bind.annotation.*;
  * @author Alexander A. Kropotin
  */
 @XmlType(name = "item")
-public class StbBoardItem {
+public class StbItem {
 
-    Long id;
+    private Long id;
 
-    String state;
+    private State state;
 
-    String name;
+    private String name;
 
-    public StbBoardItem() {
+    public StbItem() {
     }
 
+    public StbItem(Long id, String state, String name) {
+        Objects.requireNonNull(id);
+        Objects.requireNonNull(state);
+        Objects.requireNonNull(name);
+        this.id = id;
+        this.state = State.fromString(state);
+        this.name = name;
+    }
+
+    @XmlAttribute(name = "id")
     public Long getId() {
         return this.id;
     }
 
-    @XmlAttribute(name = "id")
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getState() {
-        return this.state;
-    }
-
     @XmlAttribute(name = "state")
-    public void setState(String state) {
-        this.state = state;
+    public String getState() {
+        return this.state.value;
     }
 
+    public void setState(String state) {
+        Objects.requireNonNull(state);
+        this.state = State.fromString(state);
+    }
+
+    @XmlValue
     public String getName() {
         return this.name;
     }
 
-    @XmlValue
     public void setName(String name) {
         this.name = name != null ? name.trim() : null;
     }

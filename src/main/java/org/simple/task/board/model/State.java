@@ -14,37 +14,46 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board.ui;
-
-import com.intellij.ui.table.JBTable;
-
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
+package org.simple.task.board.model;
 
 /**
- * The type Simple task board table.
- *
+ * @project simple-task-board
+ * @created 28.08.2020 20:22
+ * <p>
  * @author Alexander A. Kropotin
- * @project simple -task-board
- * @created 05.05.2020 18:02 <p>
  */
-public class SimpleTaskBoardTable extends JBTable {
+public enum State {
 
-    /**
-     * Instantiates a new Simple task board table.
-     */
-    public SimpleTaskBoardTable() {
-        Object[] columnNames = {"number", "state", "name"};
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-        setModel(model);
+    NEW("new"),
+
+    IN_PROGRESS("in progress"),
+
+    DONE("done");
+
+    String value;
+
+    State(String value) {
+        this.value = value;
     }
 
     /**
-     * Instantiates a new Simple task board table.
+     * From string write mode.
      *
-     * @param tableModel the table model
+     * @param value the state value
+     * @return the State
      */
-    public SimpleTaskBoardTable(TableModel tableModel) {
-        super(tableModel);
+    static State fromString(String value) {
+        if (value != null && value.isBlank()) {
+            switch (value.trim().toLowerCase()) {
+                case "in progress":
+                    return IN_PROGRESS;
+                case "done":
+                    return DONE;
+                case "new":
+                default: return NEW;
+            }
+        }
+
+        return  NEW;
     }
 }
