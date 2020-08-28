@@ -45,7 +45,7 @@ public class SubmitBoardAction extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
-        StbTable table = (StbTable) ProcessesTaskAction.getEventComponent(e);
+        StbTable table = ProcessesTaskAction.getEventComponent(e);
         if (table == null) return;
 
         StbBoard board = StbBoardUtil.loadBoard(e.getProject().getBasePath());

@@ -27,8 +27,10 @@ import org.jetbrains.annotations.Nullable;
 import org.simple.task.board.actions.ProcessesDataKeys;
 import org.simple.task.board.model.StbBoard;
 import org.simple.task.board.model.StbItem;
+import org.simple.task.board.model.StbState;
 import org.simple.task.board.util.StbBoardUtil;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.Collections;
 
@@ -46,7 +48,7 @@ public class StbToolWindow extends SimpleToolWindowPanel {
      */
     public static final String ID = "SimpleTaskBoard";
 
-    private StbTable simpleTaskBoardToolWindowPanel;
+    private StbTable stbToolWindowPanel;
 
     /**
      * Instantiates a new Simple task board panel.
@@ -55,12 +57,10 @@ public class StbToolWindow extends SimpleToolWindowPanel {
      */
     public StbToolWindow(Project project) {
         super(true, true);
-        this.simpleTaskBoardToolWindowPanel = new StbTable();
-
+        this.stbToolWindowPanel = new StbTable();
 
         StbBoard board = null;
         if (!StbBoardUtil.chekStbBoardExistance(project.getBasePath())) {
-
             board = new StbBoard();
             board.setName(project.getName());
             board.setItems(Collections.EMPTY_LIST);
@@ -72,24 +72,31 @@ public class StbToolWindow extends SimpleToolWindowPanel {
         }
 
         for (StbItem item : board.getItems()) {
-            (this.simpleTaskBoardToolWindowPanel.getModel()).addRow(new Object[]{
+            (this.stbToolWindowPanel.getModel()).addRow(new Object[]{
                     item.getId(),
                     item.getState(),
                     item.getName(),
             });
         }
 
+        this.stbToolWindowPanel.getColumnModel()
+                .getColumn(1)
+                .setCellEditor(new StbChooseCellEditor(StbState.valuesAsString()));
+        this.stbToolWindowPanel.getColumnModel()
+                .getColumn(1)
+                .setCellRenderer(new StbChooseCellRender(StbState.valuesAsString()));
+
         final ActionManager actionManager = ActionManager.getInstance();
         ActionToolbar actionToolbar = actionManager.createActionToolbar("SimpleTaskBoard Toolbar",
                 (DefaultActionGroup) actionManager.getAction("SimpleTaskBoard.ToolBar"), true);
         setToolbar(actionToolbar.getComponent());
-        setContent(ScrollPaneFactory.createScrollPane(this.simpleTaskBoardToolWindowPanel));
+        setContent(ScrollPaneFactory.createScrollPane(this.stbToolWindowPanel));
     }
 
     @Nullable
     public Object getData(@NonNls String dataId) {
         if (ProcessesDataKeys.PROCESSES_TASKS.is(dataId)) {
-            return this.simpleTaskBoardToolWindowPanel;
+            return this.stbToolWindowPanel;
         }
 
         return super.getData(dataId);

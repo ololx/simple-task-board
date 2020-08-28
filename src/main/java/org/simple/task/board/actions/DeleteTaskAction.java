@@ -42,7 +42,7 @@ public class DeleteTaskAction extends AnAction {
         StbTable table = ProcessesTaskAction.getEventComponent(e);
         if (table == null) return;
 
-        DefaultTableModel model = table.getModel();
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
         int[] selectedRowIndexes = table.getSelectedRows();
 
         if (selectedRowIndexes.length == 0) {

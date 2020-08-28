@@ -16,13 +16,17 @@
  */
 package org.simple.task.board.model;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.stream.Collectors;
+
 /**
  * @project simple-task-board
  * @created 28.08.2020 20:22
  * <p>
  * @author Alexander A. Kropotin
  */
-public enum State {
+public enum StbState {
 
     NEW("new"),
 
@@ -32,7 +36,7 @@ public enum State {
 
     String value;
 
-    State(String value) {
+    StbState(String value) {
         this.value = value;
     }
 
@@ -42,7 +46,7 @@ public enum State {
      * @param value the state value
      * @return the State
      */
-    static State fromString(String value) {
+    static StbState fromString(String value) {
         if (value != null && value.isBlank()) {
             switch (value.trim().toLowerCase()) {
                 case "in progress":
@@ -55,5 +59,11 @@ public enum State {
         }
 
         return  NEW;
+    }
+
+    public static String[] valuesAsString() {
+        return Arrays.stream(StbState.values())
+                .map(value -> value.value)
+                .toArray(String[]::new);
     }
 }

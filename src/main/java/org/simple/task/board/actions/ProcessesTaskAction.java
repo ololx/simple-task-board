@@ -41,7 +41,7 @@ public class ProcessesTaskAction extends AnAction {
      * @return the jb table
      */
     public static StbTable getEventComponent(AnActionEvent e){
-        return (StbTable) ProcessesDataKeys.PROCESSES_TASKS.getData(e.getDataContext());
+        return ProcessesDataKeys.PROCESSES_TASKS.getData(e.getDataContext());
     }
 
     @Override

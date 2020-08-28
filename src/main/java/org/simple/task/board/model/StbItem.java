@@ -30,7 +30,7 @@ public class StbItem {
 
     private Long id;
 
-    private State state;
+    private StbState state;
 
     private String name;
 
@@ -42,7 +42,7 @@ public class StbItem {
         Objects.requireNonNull(state);
         Objects.requireNonNull(name);
         this.id = id;
-        this.state = State.fromString(state);
+        this.state = StbState.fromString(state);
         this.name = name;
     }
 
@@ -62,7 +62,7 @@ public class StbItem {
 
     public void setState(String state) {
         Objects.requireNonNull(state);
-        this.state = State.fromString(state);
+        this.state = StbState.fromString(state);
     }
 
     @XmlValue
