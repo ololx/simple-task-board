@@ -17,6 +17,7 @@
 package org.simple.task.board.model;
 
 import javax.xml.bind.annotation.*;
+import java.util.Calendar;
 import java.util.Objects;
 
 /**

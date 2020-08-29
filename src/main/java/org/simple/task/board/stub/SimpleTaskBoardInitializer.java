@@ -48,7 +48,8 @@ public class SimpleTaskBoardInitializer implements ProjectComponent {
      */
     protected SimpleTaskBoardInitializer(@NotNull final Project project) {
        this.project = project;
-       this.panel = new StbToolWindow(project);
+       this.panel = new StbToolWindow();
+       this.panel.init(project);
     }
 
     @Override

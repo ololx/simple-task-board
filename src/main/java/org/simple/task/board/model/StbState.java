@@ -46,7 +46,7 @@ public enum StbState {
      * @param value the state value
      * @return the State
      */
-    static StbState fromString(String value) {
+    public static StbState fromString(String value) {
         if (value != null && !value.isBlank()) {
             switch (value.trim().toLowerCase()) {
                 case "in progress":
@@ -66,4 +66,5 @@ public enum StbState {
                 .map(value -> value.value)
                 .toArray(String[]::new);
     }
+
 }

@@ -16,9 +16,12 @@
  */
 package org.simple.task.board.ui;
 
+import org.simple.task.board.model.StbState;
+
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
+import java.util.Calendar;
 
 /**
  * @project simple-task-board
