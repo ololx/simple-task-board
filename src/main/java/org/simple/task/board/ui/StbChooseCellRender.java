@@ -38,14 +38,6 @@ public class StbChooseCellRender extends JComboBox implements TableCellRenderer 
                                                    boolean hasFocus,
                                                    int row,
                                                    int column) {
-        if (isSelected) {
-            setForeground(table.getSelectionForeground());
-            super.setBackground(table.getSelectionBackground());
-        } else {
-            setForeground(table.getForeground());
-            setBackground(table.getBackground());
-        }
-
         setSelectedItem(value);
 
         return this;

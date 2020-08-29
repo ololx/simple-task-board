@@ -56,13 +56,14 @@ public class SubmitBoardAction extends AnAction {
     public List<StbItem> getItems(DefaultTableModel model) {
         return new ArrayList<StbItem>(){{
             for (int i = 0; i < model.getRowCount(); i++) {
-                add(
-                        new StbItem(
-                                Long.valueOf(String.valueOf(model.getValueAt(i, 0))),
-                                String.valueOf(model.getValueAt(i, 1)),
-                                String.valueOf(model.getValueAt(i, 2))
-                        )
+                StbItem item = new StbItem(
+                        Long.valueOf(String.valueOf(model.getValueAt(i, 0))),
+                        String.valueOf(model.getValueAt(i, 1)),
+                        String.valueOf(model.getValueAt(i, 2))
                 );
+                add(item);
+
+                System.err.println(item + "\n       " + model.getValueAt(i, 1));
             }
         }};
     }

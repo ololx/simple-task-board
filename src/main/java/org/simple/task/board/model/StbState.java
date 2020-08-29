@@ -47,7 +47,7 @@ public enum StbState {
      * @return the State
      */
     static StbState fromString(String value) {
-        if (value != null && value.isBlank()) {
+        if (value != null && !value.isBlank()) {
             switch (value.trim().toLowerCase()) {
                 case "in progress":
                     return IN_PROGRESS;
