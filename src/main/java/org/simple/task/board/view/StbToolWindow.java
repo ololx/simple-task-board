@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board.ui;
+package org.simple.task.board.view;
 
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.ActionToolbar;
@@ -24,14 +24,12 @@ import com.intellij.openapi.ui.SimpleToolWindowPanel;
 import com.intellij.ui.ScrollPaneFactory;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.Nullable;
-import org.simple.task.board.actions.ProcessesDataKeys;
-import org.simple.task.board.model.StbBoard;
-import org.simple.task.board.model.StbItem;
-import org.simple.task.board.model.StbState;
-import org.simple.task.board.util.StbBoardUtil;
+import org.simple.task.board.presenter.ProcessesDataKeys;
+import org.simple.task.board.entity.BoardDetail;
+import org.simple.task.board.entity.BoardItemDetail;
+import org.simple.task.board.entity.BoardItemStateDetail;
+import org.simple.task.board.interactor.StbBoardUtil;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.util.Collections;
 
 /**
@@ -52,8 +50,6 @@ public class StbToolWindow extends SimpleToolWindowPanel {
 
     /**
      * Instantiates a new Simple task board panel.
-     *
-     * @param project the project
      */
     public StbToolWindow() {
         super(true, true);
@@ -73,10 +69,10 @@ public class StbToolWindow extends SimpleToolWindowPanel {
     public void init(Project project) {
         this.stbToolWindowPanel.getColumnModel()
                 .getColumn(1)
-                .setCellEditor(new StbChooseCellEditor(StbState.valuesAsString()));
+                .setCellEditor(new StbChooseCellEditor(BoardItemStateDetail.valuesAsString()));
         this.stbToolWindowPanel.getColumnModel()
                 .getColumn(1)
-                .setCellRenderer(new StbChooseCellRender(StbState.valuesAsString()));
+                .setCellRenderer(new StbChooseCellRender(BoardItemStateDetail.valuesAsString()));
         this.loadData(project);
         final ActionManager actionManager = ActionManager.getInstance();
         ActionToolbar actionToolbar = actionManager.createActionToolbar("SimpleTaskBoard Toolbar",
@@ -86,9 +82,9 @@ public class StbToolWindow extends SimpleToolWindowPanel {
     }
 
     private void loadData(Project project) {
-        StbBoard board = null;
+        BoardDetail board = null;
         if (!StbBoardUtil.chekStbBoardExistance(project.getBasePath())) {
-            board = new StbBoard();
+            board = new BoardDetail();
             board.setName(project.getName());
             board.setItems(Collections.EMPTY_LIST);
             StbBoardUtil.saveBoard(project.getBasePath(), board);
@@ -98,7 +94,7 @@ public class StbToolWindow extends SimpleToolWindowPanel {
             if (board.getItems() == null) board.setItems(Collections.EMPTY_LIST);
         }
 
-        for (StbItem item : board.getItems()) {
+        for (BoardItemDetail item : board.getItems()) {
             (this.stbToolWindowPanel.getModel()).addRow(new Object[]{
                     item.getId(),
                     item.getState(),

@@ -14,19 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board.ui;
+package org.simple.task.board.presenter;
 
-import javax.swing.*;
+import com.intellij.openapi.actionSystem.DataKey;
+import org.simple.task.board.view.StbTable;
 
 /**
- * @project simple-task-board
- * @created 28.08.2020 20:52
- * <p>
+ * The type Processes data keys.
+ *
  * @author Alexander A. Kropotin
+ * @project simple -task-board
+ * @created 06.05.2020 18:41 <p>
  */
-public class StbChooseCellEditor extends DefaultCellEditor {
-
-    public StbChooseCellEditor(String[] items) {
-        super(new JComboBox(items));
-    }
+public class ProcessesDataKeys {
+    /**
+     * The constant PROCESSES_TASKS.
+     */
+    public static final DataKey<StbTable> PROCESSES_TASKS = DataKey.create("PROCESSES_TASKS");
 }

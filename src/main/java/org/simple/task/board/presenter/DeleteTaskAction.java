@@ -14,38 +14,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board.actions;
+package org.simple.task.board.presenter;
 
-import com.intellij.notification.Notification;
-import com.intellij.notification.NotificationType;
-import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.ui.table.JBTable;
-import org.jetbrains.annotations.NotNull;
-import org.simple.task.board.ui.StbTable;
+import org.simple.task.board.view.StbTable;
+
+import javax.swing.table.DefaultTableModel;
 
 /**
- * The type Processes task action.
+ * The type Delete task action.
  *
  * @author Alexander A. Kropotin
  * @project simple -task-board
- * @created 06.05.2020 18:40 <p>
+ * @created 09.05.2020 14:24 <p>
  */
-public class ProcessesTaskAction extends AnAction {
+public class DeleteTaskAction extends AnAction {
 
     /**
-     * Get event component jb table.
-     *
-     * @param e the e
-     * @return the jb table
+     * The constant ID.
      */
-    public static StbTable getEventComponent(AnActionEvent e){
-        return ProcessesDataKeys.PROCESSES_TASKS.getData(e.getDataContext());
-    }
+    public static final String ID = "SimpleTaskBoard.ToolBar.DeleteTask";
 
     @Override
-    public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
-        Notifications.Bus.notify(new Notification("", "header", "Common action", NotificationType.INFORMATION));
+    public void actionPerformed(AnActionEvent e) {
+        StbTable table = ProcessesTaskAction.getEventComponent(e);
+        if (table == null) return;
+
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        int[] selectedRowIndexes = table.getSelectedRows();
+
+        if (selectedRowIndexes.length == 0) {
+            model.removeRow(table.getRowCount() - 1);
+        } else {
+            for (int i = selectedRowIndexes.length - 1; i >= 0; i--) {
+                model.removeRow(selectedRowIndexes[i]);
+            }
+        }
     }
 }

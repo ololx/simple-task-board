@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board.ui;
+package org.simple.task.board.view;
 
 import com.intellij.ui.table.JBTable;
 

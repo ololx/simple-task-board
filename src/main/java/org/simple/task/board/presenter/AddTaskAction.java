@@ -14,28 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board.actions;
+package org.simple.task.board.presenter;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.ui.table.JBTable;
-import org.simple.task.board.ui.StbTable;
+import org.simple.task.board.view.StbTable;
 
 import javax.swing.table.DefaultTableModel;
 
 /**
- * The type Delete task action.
+ * The type Add new task action.
  *
  * @author Alexander A. Kropotin
  * @project simple -task-board
  * @created 09.05.2020 14:24 <p>
  */
-public class DeleteTaskAction extends AnAction {
+public class AddTaskAction extends AnAction {
 
     /**
      * The constant ID.
      */
-    public static final String ID = "SimpleTaskBoard.ToolBar.DeleteTask";
+    public static final String ID = "SimpleTaskBoard.ToolBar.AddNewTask";
 
     @Override
     public void actionPerformed(AnActionEvent e) {
@@ -46,11 +45,9 @@ public class DeleteTaskAction extends AnAction {
         int[] selectedRowIndexes = table.getSelectedRows();
 
         if (selectedRowIndexes.length == 0) {
-            model.removeRow(table.getRowCount() - 1);
+            model.addRow(new Object[table.getColumnCount()]);
         } else {
-            for (int i = selectedRowIndexes.length - 1; i >= 0; i--) {
-                model.removeRow(selectedRowIndexes[i]);
-            }
+            model.insertRow(selectedRowIndexes[selectedRowIndexes.length - 1], new Object[table.getColumnCount()]);
         }
     }
 }

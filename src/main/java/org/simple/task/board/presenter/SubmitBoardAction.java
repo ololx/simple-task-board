@@ -14,18 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board.actions;
+package org.simple.task.board.presenter;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.ui.table.JBTable;
-import org.simple.task.board.model.StbBoard;
-import org.simple.task.board.ui.StbTable;
+import org.simple.task.board.entity.BoardDetail;
+import org.simple.task.board.entity.BoardItemDetail;
+import org.simple.task.board.view.StbTable;
+import org.simple.task.board.interactor.StbBoardUtil;
 
 import javax.swing.table.DefaultTableModel;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The type Add new task action.
@@ -34,25 +34,34 @@ import java.io.File;
  * @project simple -task-board
  * @created 09.05.2020 14:24 <p>
  */
-public class AddTaskAction extends AnAction {
+public class SubmitBoardAction extends AnAction {
 
     /**
      * The constant ID.
      */
-    public static final String ID = "SimpleTaskBoard.ToolBar.AddNewTask";
+    public static final String ID = "SimpleTaskBoard.ToolBar.SaveTasks";
 
     @Override
     public void actionPerformed(AnActionEvent e) {
         StbTable table = ProcessesTaskAction.getEventComponent(e);
         if (table == null) return;
 
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        int[] selectedRowIndexes = table.getSelectedRows();
+        BoardDetail board = StbBoardUtil.loadBoard(e.getProject().getBasePath());
+        board.setItems(this.getItems(table.getModel()));
+        StbBoardUtil.saveBoard(e.getProject().getBasePath(), board);
+    }
 
-        if (selectedRowIndexes.length == 0) {
-            model.addRow(new Object[table.getColumnCount()]);
-        } else {
-            model.insertRow(selectedRowIndexes[selectedRowIndexes.length - 1], new Object[table.getColumnCount()]);
-        }
+    public List<BoardItemDetail> getItems(DefaultTableModel model) {
+        return new ArrayList<BoardItemDetail>(){{
+            for (int i = 0; i < model.getRowCount(); i++) {
+                add(
+                        new BoardItemDetail(
+                                Long.valueOf(String.valueOf(model.getValueAt(i, 0))),
+                                String.valueOf(model.getValueAt(i, 1)),
+                                String.valueOf(model.getValueAt(i, 2))
+                        )
+                );
+            }
+        }};
     }
 }

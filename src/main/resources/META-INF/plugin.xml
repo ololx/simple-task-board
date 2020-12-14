@@ -15,7 +15,7 @@
 
     <project-components>
         <component>
-            <implementation-class>org.simple.task.board.stub.SimpleTaskBoardInitializer</implementation-class>
+            <implementation-class>org.simple.task.board.assembly.SimpleTaskBoardInitializer</implementation-class>
         </component>
     </project-components>
 
@@ -23,24 +23,24 @@
 
     </extensions>
     <actions>
-        <action id="SimpleTaskBoard.ToolBar.AddTask" class="org.simple.task.board.actions.AddTaskAction"
+        <action id="SimpleTaskBoard.ToolBar.AddTask" class="org.simple.task.board.presenter.AddTaskAction"
                 icon="SimpleTaskBoardIcons.ToolBarActions.ADD_TASK" text="Add new task"
                 description="This is an action for the creating new task on board" keymap="$default">
             <keyboard-shortcut first-keystroke="control alt N" keymap="$default"/>
             <mouse-shortcut keystroke="control button3 doubleClick" keymap="$default"/>
         </action>
-        <action id="SimpleTaskBoard.ToolBar.DeleteTask" class="org.simple.task.board.actions.DeleteTaskAction"
+        <action id="SimpleTaskBoard.ToolBar.DeleteTask" class="org.simple.task.board.presenter.DeleteTaskAction"
                 icon="SimpleTaskBoardIcons.ToolBarActions.DELETE_TASK" text="Delete tasks"
                 description="This is an action for the deleting task on board" keymap="$default">
             <keyboard-shortcut first-keystroke="control alt D" keymap="$default"/>
             <mouse-shortcut keystroke="alt button3 doubleClick" keymap="$default"/>
         </action>
-        <action id="SimpleTaskBoard.ToolBar.SubmitBoard" class="org.simple.task.board.actions.SubmitBoardAction"
+        <action id="SimpleTaskBoard.ToolBar.SubmitBoard" class="org.simple.task.board.presenter.SubmitBoardAction"
                 icon="SimpleTaskBoardIcons.ToolBarActions.SUBMIT_BOARD" text="Submit all"
                 description="This is an action for the saving all tasks" keymap="$default">
             <keyboard-shortcut first-keystroke="control alt s" keymap="$default"/>
         </action>
-        <action id="SimpleTaskBoard.ToolBar.ReloadBoard" class="org.simple.task.board.actions.SubmitBoardAction"
+        <action id="SimpleTaskBoard.ToolBar.ReloadBoard" class="org.simple.task.board.presenter.SubmitBoardAction"
                 icon="SimpleTaskBoardIcons.ToolBarActions.RELOAD_BOARD" text="Reload board"
                 description="This is an action for the saving all tasks" keymap="$default">
             <keyboard-shortcut first-keystroke="control alt r" keymap="$default"/>

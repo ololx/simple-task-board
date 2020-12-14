@@ -14,9 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board.util;
+package org.simple.task.board.interactor;
 
-import org.simple.task.board.model.StbBoard;
+import org.simple.task.board.entity.BoardDetail;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
@@ -52,14 +52,14 @@ public interface StbBoardUtil {
         return file;
     }
 
-    static StbBoard loadBoard(String filePath) {
+    static BoardDetail loadBoard(String filePath) {
         File boardFile = loadFileOrCreateIfNotExist(filePath);
 
-        StbBoard boardFromFile = null;
+        BoardDetail boardFromFile = null;
         try {
-            JAXBContext context = JAXBContext.newInstance(StbBoard.class);
+            JAXBContext context = JAXBContext.newInstance(BoardDetail.class);
             Unmarshaller um = context.createUnmarshaller();
-            boardFromFile = (StbBoard) um.unmarshal(new FileReader(boardFile));
+            boardFromFile = (BoardDetail) um.unmarshal(new FileReader(boardFile));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,11 +67,11 @@ public interface StbBoardUtil {
         return boardFromFile;
     }
 
-    static void saveBoard(String filePath, StbBoard board) {
+    static void saveBoard(String filePath, BoardDetail board) {
         File boardFile = loadFileOrCreateIfNotExist(filePath);
 
         try {
-            JAXBContext context = JAXBContext.newInstance(StbBoard.class);
+            JAXBContext context = JAXBContext.newInstance(BoardDetail.class);
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             marshaller.marshal(board, boardFile);

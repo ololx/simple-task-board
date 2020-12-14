@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board.stub;
+package org.simple.task.board.assembly;
 
 import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.components.ServiceManager;
@@ -26,7 +26,7 @@ import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.content.ContentManager;
 import org.jetbrains.annotations.NotNull;
-import org.simple.task.board.ui.StbToolWindow;
+import org.simple.task.board.view.StbToolWindow;
 
 /**
  * The type Simple task board initializer.

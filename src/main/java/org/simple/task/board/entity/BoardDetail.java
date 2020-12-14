@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board.model;
+package org.simple.task.board.entity;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;
@@ -28,13 +28,13 @@ import java.util.stream.Collectors;
  */
 @XmlRootElement(name = "board")
 @XmlType(name = "board")
-public class StbBoard {
+public class BoardDetail {
 
     String name;
 
-    List<StbItem> items;
+    List<BoardItemDetail> items;
 
-    public StbBoard() {
+    public BoardDetail() {
     }
 
     public String getName() {
@@ -46,13 +46,13 @@ public class StbBoard {
         this.name = name;
     }
 
-    public List<StbItem> getItems() {
+    public List<BoardItemDetail> getItems() {
         return this.items;
     }
 
     @XmlElementWrapper(name = "items")
     @XmlElement(name = "item")
-    public void setItems(List<StbItem> items) {
+    public void setItems(List<BoardItemDetail> items) {
         this.items = items;
     }
 

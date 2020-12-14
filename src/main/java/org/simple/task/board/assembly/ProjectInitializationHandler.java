@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board.stub;
+package org.simple.task.board.assembly;
 
 import com.intellij.openapi.project.DumbService;
 import com.intellij.openapi.project.Project;

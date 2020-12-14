@@ -14,11 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board.model;
+package org.simple.task.board.entity;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.stream.Collectors;
 
 /**
  * @project simple-task-board
@@ -26,7 +24,7 @@ import java.util.stream.Collectors;
  * <p>
  * @author Alexander A. Kropotin
  */
-public enum StbState {
+public enum BoardItemStateDetail {
 
     NEW("new"),
 
@@ -36,7 +34,7 @@ public enum StbState {
 
     String value;
 
-    StbState(String value) {
+    BoardItemStateDetail(String value) {
         this.value = value;
     }
 
@@ -46,7 +44,7 @@ public enum StbState {
      * @param value the state value
      * @return the State
      */
-    public static StbState fromString(String value) {
+    public static BoardItemStateDetail fromString(String value) {
         if (value != null && !value.isBlank()) {
             switch (value.trim().toLowerCase()) {
                 case "in progress":
@@ -62,7 +60,7 @@ public enum StbState {
     }
 
     public static String[] valuesAsString() {
-        return Arrays.stream(StbState.values())
+        return Arrays.stream(BoardItemStateDetail.values())
                 .map(value -> value.value)
                 .toArray(String[]::new);
     }

@@ -14,10 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board.model;
+package org.simple.task.board.entity;
 
 import javax.xml.bind.annotation.*;
-import java.util.Calendar;
 import java.util.Objects;
 
 /**
@@ -27,23 +26,23 @@ import java.util.Objects;
  * @author Alexander A. Kropotin
  */
 @XmlType(name = "item")
-public class StbItem {
+public class BoardItemDetail {
 
     private Long id;
 
-    private StbState state;
+    private BoardItemStateDetail state;
 
     private String name;
 
-    public StbItem() {
+    public BoardItemDetail() {
     }
 
-    public StbItem(Long id, String state, String name) {
+    public BoardItemDetail(Long id, String state, String name) {
         Objects.requireNonNull(id);
         Objects.requireNonNull(state);
         Objects.requireNonNull(name);
         this.id = id;
-        this.state = StbState.fromString(state);
+        this.state = BoardItemStateDetail.fromString(state);
         this.name = name;
     }
 
@@ -63,7 +62,7 @@ public class StbItem {
 
     public void setState(String state) {
         Objects.requireNonNull(state);
-        this.state = StbState.fromString(state);
+        this.state = BoardItemStateDetail.fromString(state);
     }
 
     @XmlValue

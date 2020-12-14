@@ -14,14 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board.ui;
-
-import org.simple.task.board.model.StbState;
+package org.simple.task.board.view;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
-import java.util.Calendar;
 
 /**
  * @project simple-task-board
