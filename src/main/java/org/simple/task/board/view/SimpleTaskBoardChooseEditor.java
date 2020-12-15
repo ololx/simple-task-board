@@ -24,9 +24,9 @@ import javax.swing.*;
  * <p>
  * @author Alexander A. Kropotin
  */
-public class StbChooseCellEditor extends DefaultCellEditor {
+public class SimpleTaskBoardChooseEditor extends DefaultCellEditor {
 
-    public StbChooseCellEditor(String[] items) {
+    public SimpleTaskBoardChooseEditor(String[] items) {
         super(new JComboBox(items));
     }
 }

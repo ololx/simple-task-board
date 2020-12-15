@@ -39,21 +39,21 @@ import java.util.Collections;
  * @project simple -task-board
  * @created 05.05.2020 14:44 <p>
  */
-public class StbToolWindow extends SimpleToolWindowPanel {
+public class SimpleTaskBoardToolWindow extends SimpleToolWindowPanel {
 
     /**
      * The constant ID.
      */
     public static final String ID = "SimpleTaskBoard";
 
-    private StbTable stbToolWindowPanel;
+    private SimpleTaskBoardTable stbToolWindowPanel;
 
     /**
      * Instantiates a new Simple task board panel.
      */
-    public StbToolWindow() {
+    public SimpleTaskBoardToolWindow() {
         super(true, true);
-        this.stbToolWindowPanel = new StbTable();
+        this.stbToolWindowPanel = new SimpleTaskBoardTable();
     }
 
     @Override
@@ -69,10 +69,10 @@ public class StbToolWindow extends SimpleToolWindowPanel {
     public void init(Project project) {
         this.stbToolWindowPanel.getColumnModel()
                 .getColumn(1)
-                .setCellEditor(new StbChooseCellEditor(BoardItemStateDetail.valuesAsString()));
+                .setCellEditor(new SimpleTaskBoardChooseEditor(BoardItemStateDetail.valuesAsString()));
         this.stbToolWindowPanel.getColumnModel()
                 .getColumn(1)
-                .setCellRenderer(new StbChooseCellRender(BoardItemStateDetail.valuesAsString()));
+                .setCellRenderer(new SimpleTaskBoardChooseRender(BoardItemStateDetail.valuesAsString()));
         this.loadData(project);
         final ActionManager actionManager = ActionManager.getInstance();
         ActionToolbar actionToolbar = actionManager.createActionToolbar("SimpleTaskBoard Toolbar",

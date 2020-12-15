@@ -28,12 +28,12 @@ import javax.swing.table.TableModel;
  * @project simple -task-board
  * @created 05.05.2020 18:02 <p>
  */
-public class StbTable extends JBTable {
+public class SimpleTaskBoardTable extends JBTable {
 
     /**
      * Instantiates a new Simple task board table.
      */
-    public StbTable() {
+    public SimpleTaskBoardTable() {
         Object[] columnNames = {"number", "state", "name"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
         setModel(model);
@@ -44,7 +44,7 @@ public class StbTable extends JBTable {
      *
      * @param tableModel the table model
      */
-    public StbTable(TableModel tableModel) {
+    public SimpleTaskBoardTable(TableModel tableModel) {
         super(tableModel);
     }
 

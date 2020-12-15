@@ -17,7 +17,7 @@
 package org.simple.task.board.presenter;
 
 import com.intellij.openapi.actionSystem.DataKey;
-import org.simple.task.board.view.StbTable;
+import org.simple.task.board.view.SimpleTaskBoardTable;
 
 /**
  * The type Processes data keys.
@@ -30,5 +30,5 @@ public class ProcessesDataKeys {
     /**
      * The constant PROCESSES_TASKS.
      */
-    public static final DataKey<StbTable> PROCESSES_TASKS = DataKey.create("PROCESSES_TASKS");
+    public static final DataKey<SimpleTaskBoardTable> PROCESSES_TASKS = DataKey.create("PROCESSES_TASKS");
 }

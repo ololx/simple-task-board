@@ -26,7 +26,7 @@ import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.content.ContentManager;
 import org.jetbrains.annotations.NotNull;
-import org.simple.task.board.view.StbToolWindow;
+import org.simple.task.board.view.SimpleTaskBoardToolWindow;
 
 /**
  * The type Simple task board initializer.
@@ -39,7 +39,7 @@ public class SimpleTaskBoardInitializer implements ProjectComponent {
 
     private final Project project;
 
-    private final StbToolWindow panel;
+    private final SimpleTaskBoardToolWindow panel;
 
     /**
      * Instantiates a new Simple task board manager.
@@ -48,7 +48,7 @@ public class SimpleTaskBoardInitializer implements ProjectComponent {
      */
     protected SimpleTaskBoardInitializer(@NotNull final Project project) {
        this.project = project;
-       this.panel = new StbToolWindow();
+       this.panel = new SimpleTaskBoardToolWindow();
        this.panel.init(project);
     }
 
@@ -65,7 +65,7 @@ public class SimpleTaskBoardInitializer implements ProjectComponent {
     private void initToolWindow() {
         final ToolWindowManagerEx manager = ToolWindowManagerEx.getInstanceEx(this.project);
         ToolWindowEx simpleTaskBoardToolWindow = (ToolWindowEx) manager.registerToolWindow(
-                StbToolWindow.ID,
+                SimpleTaskBoardToolWindow.ID,
                 false,
                 ToolWindowAnchor.RIGHT,
                 this.project,

@@ -18,7 +18,7 @@ package org.simple.task.board.presenter;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import org.simple.task.board.view.StbTable;
+import org.simple.task.board.view.SimpleTaskBoardTable;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -38,7 +38,7 @@ public class DeleteTaskAction extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
-        StbTable table = ProcessesTaskAction.getEventComponent(e);
+        SimpleTaskBoardTable table = ProcessesTaskAction.getEventComponent(e);
         if (table == null) return;
 
         DefaultTableModel model = (DefaultTableModel) table.getModel();

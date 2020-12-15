@@ -26,9 +26,9 @@ import java.awt.*;
  * <p>
  * @author Alexander A. Kropotin
  */
-public class StbChooseCellRender extends JComboBox implements TableCellRenderer {
+public class SimpleTaskBoardChooseRender extends JComboBox implements TableCellRenderer {
 
-    public StbChooseCellRender(String[] items) {
+    public SimpleTaskBoardChooseRender(String[] items) {
         super(items);
     }
 

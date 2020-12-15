@@ -22,7 +22,7 @@ import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import org.jetbrains.annotations.NotNull;
-import org.simple.task.board.view.StbTable;
+import org.simple.task.board.view.SimpleTaskBoardTable;
 
 /**
  * The type Processes task action.
@@ -39,7 +39,7 @@ public class ProcessesTaskAction extends AnAction {
      * @param e the e
      * @return the jb table
      */
-    public static StbTable getEventComponent(AnActionEvent e){
+    public static SimpleTaskBoardTable getEventComponent(AnActionEvent e){
         return ProcessesDataKeys.PROCESSES_TASKS.getData(e.getDataContext());
     }
 

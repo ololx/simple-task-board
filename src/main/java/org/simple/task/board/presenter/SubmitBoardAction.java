@@ -20,7 +20,7 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import org.simple.task.board.entity.BoardDetail;
 import org.simple.task.board.entity.BoardItemDetail;
-import org.simple.task.board.view.StbTable;
+import org.simple.task.board.view.SimpleTaskBoardTable;
 import org.simple.task.board.interactor.StbBoardUtil;
 
 import javax.swing.table.DefaultTableModel;
@@ -43,7 +43,7 @@ public class SubmitBoardAction extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
-        StbTable table = ProcessesTaskAction.getEventComponent(e);
+        SimpleTaskBoardTable table = ProcessesTaskAction.getEventComponent(e);
         if (table == null) return;
 
         BoardDetail board = StbBoardUtil.loadBoard(e.getProject().getBasePath());
