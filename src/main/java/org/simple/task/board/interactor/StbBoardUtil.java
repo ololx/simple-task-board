@@ -33,7 +33,7 @@ import java.io.IOException;
  */
 public interface StbBoardUtil {
 
-    static boolean chekStbBoardExistance(String filePath) {
+    static boolean checkStbBoardExistence(String filePath) {
         return new File(filePath + "/.idea/simpleTaskBoard.xml").exists();
     }
 

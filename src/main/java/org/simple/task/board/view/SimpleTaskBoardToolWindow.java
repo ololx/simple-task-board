@@ -83,7 +83,7 @@ public class SimpleTaskBoardToolWindow extends SimpleToolWindowPanel {
 
     private void loadData(Project project) {
         BoardDetail board = null;
-        if (!StbBoardUtil.chekStbBoardExistance(project.getBasePath())) {
+        if (!StbBoardUtil.checkStbBoardExistence(project.getBasePath())) {
             board = new BoardDetail();
             board.setName(project.getName());
             board.setItems(Collections.EMPTY_LIST);
