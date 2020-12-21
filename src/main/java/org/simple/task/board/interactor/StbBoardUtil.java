@@ -17,6 +17,7 @@
 package org.simple.task.board.interactor;
 
 import org.simple.task.board.entity.BoardDetail;
+import org.simple.task.board.resources.SimpleTaskBoardStoredDataPath;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
@@ -37,8 +38,8 @@ public interface StbBoardUtil {
         return new File(filePath + "/.idea/simpleTaskBoard.xml").exists();
     }
 
-    static File loadFileOrCreateIfNotExist(String filePath) {
-        File file = new File(filePath + "/.idea/simpleTaskBoard.xml");
+    static File loadFileOrCreateIfNotExist(String projectPath) {
+        File file = SimpleTaskBoardStoredDataPath.getPath(projectPath).toFile();
         try {
             if (file.createNewFile()) {
                 System.out.println("File created: " + file.getName());
