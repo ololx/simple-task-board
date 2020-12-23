@@ -32,18 +32,18 @@ import java.util.Objects;
  * <p>
  * @author Alexander A. Kropotin
  */
-public class BoardRepository {
+public class AbstractSimpleTaskBoardDataFile {
 
-    private File boardFile;
+    private File dataFile;
 
     private JAXBContext context;
 
-    public BoardRepository(File boardFile, Class<?> clazz) {
-        Objects.requireNonNull(boardFile, "A file couldn't be null");
+    public AbstractSimpleTaskBoardDataFile(File dataFile, Class<?> clazz) {
+        Objects.requireNonNull(dataFile, "A file couldn't be null");
         Objects.requireNonNull(clazz, "The clazz couldn't be null");
 
         try {
-            this.boardFile = boardFile;
+            this.dataFile = dataFile;
             this.context = JAXBContext.newInstance(clazz);
         } catch (JAXBException e) {
             e.printStackTrace();
@@ -55,7 +55,7 @@ public class BoardRepository {
             JAXBContext context = JAXBContext.newInstance(BoardDetail.class);
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            marshaller.marshal(board, boardFile);
+            marshaller.marshal(board, dataFile);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -68,7 +68,7 @@ public class BoardRepository {
         try {
             JAXBContext context = JAXBContext.newInstance(BoardDetail.class);
             Unmarshaller um = context.createUnmarshaller();
-            boardFromFile = (BoardDetail) um.unmarshal(new FileReader(boardFile));
+            boardFromFile = (BoardDetail) um.unmarshal(new FileReader(dataFile));
         } catch (Exception e) {
             e.printStackTrace();
         }

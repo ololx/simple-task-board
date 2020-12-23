@@ -46,31 +46,31 @@ public class SimpleTaskBoardToolWindow extends SimpleToolWindowPanel {
      */
     public static final String ID = "SimpleTaskBoard";
 
-    private SimpleTaskBoardTable stbToolWindowPanel;
+    private SimpleTaskBoardTable simpleTaskBoardTable;
 
     /**
      * Instantiates a new Simple task board panel.
      */
     public SimpleTaskBoardToolWindow() {
         super(true, true);
-        this.stbToolWindowPanel = new SimpleTaskBoardTable();
+        this.simpleTaskBoardTable = new SimpleTaskBoardTable();
     }
 
     @Override
     @Nullable
     public Object getData(@NonNls String dataId) {
         if (ProcessesDataKeys.PROCESSES_TASKS.is(dataId)) {
-            return this.stbToolWindowPanel;
+            return this.simpleTaskBoardTable;
         }
 
         return super.getData(dataId);
     }
 
     public void init(Project project) {
-        this.stbToolWindowPanel.getColumnModel()
+        this.simpleTaskBoardTable.getColumnModel()
                 .getColumn(1)
                 .setCellEditor(new SimpleTaskBoardChooseEditor(BoardItemStateDetail.valuesAsString()));
-        this.stbToolWindowPanel.getColumnModel()
+        this.simpleTaskBoardTable.getColumnModel()
                 .getColumn(1)
                 .setCellRenderer(new SimpleTaskBoardChooseRender(BoardItemStateDetail.valuesAsString()));
         this.loadData(project);
@@ -78,7 +78,7 @@ public class SimpleTaskBoardToolWindow extends SimpleToolWindowPanel {
         ActionToolbar actionToolbar = actionManager.createActionToolbar("SimpleTaskBoard Toolbar",
                 (DefaultActionGroup) actionManager.getAction("SimpleTaskBoard.ToolBar"), true);
         setToolbar(actionToolbar.getComponent());
-        setContent(ScrollPaneFactory.createScrollPane(this.stbToolWindowPanel));
+        setContent(ScrollPaneFactory.createScrollPane(this.simpleTaskBoardTable));
     }
 
     private void loadData(Project project) {
@@ -95,7 +95,7 @@ public class SimpleTaskBoardToolWindow extends SimpleToolWindowPanel {
         }
 
         for (BoardItemDetail item : board.getItems()) {
-            (this.stbToolWindowPanel.getModel()).addRow(new Object[]{
+            (this.simpleTaskBoardTable.getModel()).addRow(new Object[]{
                     item.getId(),
                     item.getState(),
                     item.getName()

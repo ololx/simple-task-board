@@ -14,15 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.simple.task.board.interactor;
+package org.simple.task.board.assembly;
 
 /**
  * @project simple-task-board
- * @created 17.12.2020 20:29
+ * @created 23.12.2020 19:18
  * <p>
  * @author Alexander A. Kropotin
  */
-public interface FileSystemObject {
+public interface SimpleTaskBoardToolWindowBuilder {
 
 
 }
