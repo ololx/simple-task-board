@@ -16,13 +16,15 @@
  */
 package org.simple.task.board.assembly;
 
+import com.intellij.openapi.ui.SimpleToolWindowPanel;
+
 /**
  * @project simple-task-board
  * @created 23.12.2020 19:18
  * <p>
  * @author Alexander A. Kropotin
  */
-public interface SimpleTaskBoardToolWindowBuilder {
+public interface PluginToolWindowBuilder {
 
-
+    SimpleToolWindowPanel build();
 }
