@@ -1,6 +1,7 @@
 # compiled files
 *.class
 build/*
+out/
 
 # package files
 *.jar
