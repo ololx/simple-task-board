@@ -1,6 +1,7 @@
 # compiled files
 *.class
 build/*
+out/
 
 # package files
 *.jar
@@ -14,9 +15,9 @@ hs_err_pid*
 
 # gradle files
 .gradle/*
-gradle/*
-gradlew.bat
-gradlew
+#gradle/*
+#gradlew.bat
+#gradlew
 
 # all hidden files
 .*

@@ -54,12 +54,13 @@ public class SimpleTaskBoardInitializer implements ProjectComponent {
 
     @Override
     public void initComponent() {
-        ProjectInitializationHandler.runWhenInitialized(this.project, new Runnable() {
-            @Override
-            public void run() {
-                initToolWindow();
-            }
-        });
+        ProjectInitializationHandler.runWhenInitialized(
+                this.project, new Runnable() {
+                    @Override
+                    public void run() {
+                        initToolWindow();
+                    }
+                });
     }
 
     private void initToolWindow() {

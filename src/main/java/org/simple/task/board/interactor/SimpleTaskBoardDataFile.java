@@ -16,34 +16,13 @@
  */
 package org.simple.task.board.interactor;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.io.File;
-import java.io.IOException;
-
 /**
  * @project simple-task-board
- * @created 17.12.2020 20:31
+ * @created 17.12.2020 20:29
  * <p>
  * @author Alexander A. Kropotin
  */
-public class StoredFile extends File implements SimpleTaskBoardDataFile {
+public interface SimpleTaskBoardDataFile {
 
-    /**
-     * Creates a new {@code File} instance by converting the given
-     * pathname string into an abstract pathname.  If the given string is
-     * the empty string, then the result is the empty abstract pathname.
-     *
-     * @param pathname A pathname string
-     * @throws NullPointerException If the {@code pathname} argument is {@code null}
-     */
-    public StoredFile(@NotNull String pathname) {
-        super(pathname);
 
-        try {
-            this.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

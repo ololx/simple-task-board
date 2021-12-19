@@ -37,11 +37,11 @@ public class ProjectInitializationHandler {
      * @param runnable the runnable
      */
     public static void runWhenInitialized(final Project project, final Runnable runnable) {
-        if (project.isDisposed())
-            return;
+        if (project.isDisposed()) return;
 
         if (!project.isInitialized()) {
-            StartupManager.getInstance(project).registerPostStartupActivity(DisposeAwareRunnable.create(runnable, project));
+            StartupManager.getInstance(project)
+                    .registerPostStartupActivity(DisposeAwareRunnable.create(runnable, project));
 
             return;
         }
@@ -59,7 +59,8 @@ public class ProjectInitializationHandler {
         if (DumbService.isDumbAware(runnable)) {
             runnable.run();
         } else {
-            DumbService.getInstance(project).runWhenSmart(DisposeAwareRunnable.create(runnable, project));
+            DumbService.getInstance(project)
+                    .runWhenSmart(DisposeAwareRunnable.create(runnable, project));
         }
     }
 }

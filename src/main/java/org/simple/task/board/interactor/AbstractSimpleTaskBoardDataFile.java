@@ -17,67 +17,62 @@
 package org.simple.task.board.interactor;
 
 import org.simple.task.board.entity.BoardDetail;
-import org.simple.task.board.resources.SimpleTaskBoardStoredDataPath;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
+import java.util.Objects;
 
 /**
  * @project simple-task-board
- * @created 11.05.2020 19:49
+ * @created 18.12.2020 21:32
  * <p>
  * @author Alexander A. Kropotin
  */
-public interface StbBoardUtil {
+public class AbstractSimpleTaskBoardDataFile {
 
-    static boolean checkStbBoardExistence(String filePath) {
-        return new File(filePath + "/.idea/simpleTaskBoard.xml").exists();
+    private File dataFile;
+
+    private JAXBContext context;
+
+    public AbstractSimpleTaskBoardDataFile(File dataFile, Class<?> clazz) {
+        Objects.requireNonNull(dataFile, "A file couldn't be null");
+        Objects.requireNonNull(clazz, "The clazz couldn't be null");
+
+        try {
+            this.dataFile = dataFile;
+            this.context = JAXBContext.newInstance(clazz);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
     }
 
-    static File loadFileOrCreateIfNotExist(String projectPath) {
-        File file = SimpleTaskBoardStoredDataPath.getPath(projectPath).toFile();
+    public BoardDetail write(BoardDetail board) {
         try {
-            if (file.createNewFile()) {
-                System.out.println("File created: " + file.getName());
-            } else {
-                System.out.println("File already exists. " + file.getPath());
-            }
-        } catch (IOException e) {
+            JAXBContext context = JAXBContext.newInstance(BoardDetail.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            marshaller.marshal(board, dataFile);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return file;
+        return board;
     }
 
-    static BoardDetail loadBoard(String filePath) {
-        File boardFile = loadFileOrCreateIfNotExist(filePath);
-
+    public BoardDetail read() {
         BoardDetail boardFromFile = null;
         try {
             JAXBContext context = JAXBContext.newInstance(BoardDetail.class);
             Unmarshaller um = context.createUnmarshaller();
-            boardFromFile = (BoardDetail) um.unmarshal(new FileReader(boardFile));
+            boardFromFile = (BoardDetail) um.unmarshal(new FileReader(dataFile));
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return boardFromFile;
-    }
-
-    static void saveBoard(String filePath, BoardDetail board) {
-        File boardFile = loadFileOrCreateIfNotExist(filePath);
-
-        try {
-            JAXBContext context = JAXBContext.newInstance(BoardDetail.class);
-            Marshaller marshaller = context.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            marshaller.marshal(board, boardFile);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
