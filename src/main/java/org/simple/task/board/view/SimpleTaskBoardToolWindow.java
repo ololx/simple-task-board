@@ -66,6 +66,11 @@ public class SimpleTaskBoardToolWindow extends SimpleToolWindowPanel {
         return super.getData(dataId);
     }
 
+    /**
+     * Init.
+     *
+     * @param project the project
+     */
     public void init(Project project) {
         this.simpleTaskBoardTable.getColumnModel()
                 .getColumn(1)

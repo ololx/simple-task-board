@@ -19,12 +19,18 @@ package org.simple.task.board.assembly;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
 
 /**
- * @project simple-task-board
- * @created 23.12.2020 19:18
- * <p>
+ * The interface Plugin tool window builder.
+ *
  * @author Alexander A. Kropotin
+ * @project simple -task-board
+ * @created 23.12.2020 19:18 <p>
  */
 public interface PluginToolWindowBuilder {
 
+    /**
+     * Build simple tool window panel.
+     *
+     * @return the simple tool window panel
+     */
     SimpleToolWindowPanel build();
 }

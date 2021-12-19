@@ -19,13 +19,19 @@ package org.simple.task.board.view;
 import javax.swing.*;
 
 /**
- * @project simple-task-board
- * @created 28.08.2020 20:52
- * <p>
+ * The type Simple task board choose editor.
+ *
  * @author Alexander A. Kropotin
+ * @project simple -task-board
+ * @created 28.08.2020 20:52 <p>
  */
 public class SimpleTaskBoardChooseEditor extends DefaultCellEditor {
 
+    /**
+     * Instantiates a new Simple task board choose editor.
+     *
+     * @param items the items
+     */
     public SimpleTaskBoardChooseEditor(String[] items) {
         super(new JComboBox(items));
     }

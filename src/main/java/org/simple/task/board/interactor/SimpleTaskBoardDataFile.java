@@ -17,10 +17,11 @@
 package org.simple.task.board.interactor;
 
 /**
- * @project simple-task-board
- * @created 17.12.2020 20:29
- * <p>
+ * The interface Simple task board data file.
+ *
  * @author Alexander A. Kropotin
+ * @project simple -task-board
+ * @created 17.12.2020 20:29 <p>
  */
 public interface SimpleTaskBoardDataFile {
 

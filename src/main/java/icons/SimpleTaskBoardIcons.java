@@ -34,12 +34,24 @@ public final class SimpleTaskBoardIcons {
      */
     public static class ToolBarActions {
 
+        /**
+         * The constant ADD_TASK.
+         */
         /* 16x16*/ public static final Icon ADD_TASK = load("/icons/AddNewTask.svg");
 
+        /**
+         * The constant DELETE_TASK.
+         */
         /* 16x16*/ public static final Icon DELETE_TASK = load("/icons/DeleteTask.svg");
 
+        /**
+         * The constant SUBMIT_BOARD.
+         */
         /* 16x16*/ public static final Icon SUBMIT_BOARD = load("/icons/SubmitBoard.svg");
 
+        /**
+         * The constant RELOAD_BOARD.
+         */
         /* 16x16*/ public static final Icon RELOAD_BOARD = load("/icons/ReloadBoard.svg");
     }
 
