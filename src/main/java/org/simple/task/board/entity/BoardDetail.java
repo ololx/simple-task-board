@@ -21,35 +21,65 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @project simple-task-board
- * @created 10.05.2020 09:28
- * <p>
+ * The type Board detail.
+ *
  * @author Alexander A. Kropotin
+ * @project simple -task-board
+ * @created 10.05.2020 09:28 <p>
  */
 @XmlRootElement(name = "board")
 @XmlType(name = "board")
 public class BoardDetail {
 
+    /**
+     * The Name.
+     */
     String name;
 
+    /**
+     * The Items.
+     */
     List<BoardItemDetail> items;
 
+    /**
+     * Instantiates a new Board detail.
+     */
     public BoardDetail() {
     }
 
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Sets name.
+     *
+     * @param name the name
+     */
     @XmlAttribute(name = "name")
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Gets items.
+     *
+     * @return the items
+     */
     public List<BoardItemDetail> getItems() {
         return this.items;
     }
 
+    /**
+     * Sets items.
+     *
+     * @param items the items
+     */
     @XmlElementWrapper(name = "items")
     @XmlElement(name = "item")
     public void setItems(List<BoardItemDetail> items) {

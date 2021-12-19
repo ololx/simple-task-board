@@ -51,8 +51,7 @@ public final class SimpleTaskBoardStoredDataPath {
     /**
      * Gets path with prefix input.
      *
-     * @param pathPrefix the path prefix (usually is
-     *                   a path to project directory)
+     * @param pathPrefix the path prefix (usually is                   a path to project directory)
      * @return the path
      */
     public static Path getPath(String pathPrefix) {

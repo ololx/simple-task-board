@@ -21,13 +21,19 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 
 /**
- * @project simple-task-board
- * @created 28.08.2020 21:17
- * <p>
+ * The type Simple task board choose render.
+ *
  * @author Alexander A. Kropotin
+ * @project simple -task-board
+ * @created 28.08.2020 21:17 <p>
  */
 public class SimpleTaskBoardChooseRender extends JComboBox implements TableCellRenderer {
 
+    /**
+     * Instantiates a new Simple task board choose render.
+     *
+     * @param items the items
+     */
     public SimpleTaskBoardChooseRender(String[] items) {
         super(items);
     }

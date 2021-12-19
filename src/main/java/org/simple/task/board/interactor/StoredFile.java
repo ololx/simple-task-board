@@ -22,10 +22,11 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * @project simple-task-board
- * @created 17.12.2020 20:31
- * <p>
+ * The type Stored file.
+ *
  * @author Alexander A. Kropotin
+ * @project simple -task-board
+ * @created 17.12.2020 20:31 <p>
  */
 public class StoredFile extends File implements SimpleTaskBoardDataFile {
 

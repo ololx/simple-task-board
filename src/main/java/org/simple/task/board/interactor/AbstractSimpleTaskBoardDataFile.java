@@ -27,10 +27,11 @@ import java.io.FileReader;
 import java.util.Objects;
 
 /**
- * @project simple-task-board
- * @created 18.12.2020 21:32
- * <p>
+ * The type Abstract simple task board data file.
+ *
  * @author Alexander A. Kropotin
+ * @project simple -task-board
+ * @created 18.12.2020 21:32 <p>
  */
 public class AbstractSimpleTaskBoardDataFile {
 
@@ -38,6 +39,12 @@ public class AbstractSimpleTaskBoardDataFile {
 
     private JAXBContext context;
 
+    /**
+     * Instantiates a new Abstract simple task board data file.
+     *
+     * @param dataFile the data file
+     * @param clazz    the clazz
+     */
     public AbstractSimpleTaskBoardDataFile(File dataFile, Class<?> clazz) {
         Objects.requireNonNull(dataFile, "A file couldn't be null");
         Objects.requireNonNull(clazz, "The clazz couldn't be null");
@@ -50,6 +57,12 @@ public class AbstractSimpleTaskBoardDataFile {
         }
     }
 
+    /**
+     * Write board detail.
+     *
+     * @param board the board
+     * @return the board detail
+     */
     public BoardDetail write(BoardDetail board) {
         try {
             JAXBContext context = JAXBContext.newInstance(BoardDetail.class);
@@ -63,6 +76,11 @@ public class AbstractSimpleTaskBoardDataFile {
         return board;
     }
 
+    /**
+     * Read board detail.
+     *
+     * @return the board detail
+     */
     public BoardDetail read() {
         BoardDetail boardFromFile = null;
         try {

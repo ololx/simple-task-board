@@ -19,19 +19,32 @@ package org.simple.task.board.entity;
 import java.util.Arrays;
 
 /**
- * @project simple-task-board
- * @created 28.08.2020 20:22
- * <p>
+ * The enum Board item state detail.
+ *
  * @author Alexander A. Kropotin
+ * @project simple -task-board
+ * @created 28.08.2020 20:22 <p>
  */
 public enum BoardItemStateDetail {
 
+    /**
+     * New board item state detail.
+     */
     NEW("new"),
 
+    /**
+     * The In progress.
+     */
     IN_PROGRESS("in progress"),
 
+    /**
+     * Done board item state detail.
+     */
     DONE("done");
 
+    /**
+     * The Value.
+     */
     String value;
 
     BoardItemStateDetail(String value) {
@@ -59,6 +72,11 @@ public enum BoardItemStateDetail {
         return  NEW;
     }
 
+    /**
+     * Values as string string [ ].
+     *
+     * @return the string [ ]
+     */
     public static String[] valuesAsString() {
         return Arrays.stream(BoardItemStateDetail.values())
                 .map(value -> value.value)

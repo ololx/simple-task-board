@@ -27,17 +27,30 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * @project simple-task-board
- * @created 11.05.2020 19:49
- * <p>
+ * The interface Stb board util.
+ *
  * @author Alexander A. Kropotin
+ * @project simple -task-board
+ * @created 11.05.2020 19:49 <p>
  */
 public interface StbBoardUtil {
 
+    /**
+     * Check stb board existence boolean.
+     *
+     * @param filePath the file path
+     * @return the boolean
+     */
     static boolean checkStbBoardExistence(String filePath) {
         return new File(filePath + "/.idea/simpleTaskBoard.xml").exists();
     }
 
+    /**
+     * Load file or create if not exist file.
+     *
+     * @param projectPath the project path
+     * @return the file
+     */
     static File loadFileOrCreateIfNotExist(String projectPath) {
         File file = SimpleTaskBoardStoredDataPath.getPath(projectPath).toFile();
         try {
@@ -53,6 +66,12 @@ public interface StbBoardUtil {
         return file;
     }
 
+    /**
+     * Load board board detail.
+     *
+     * @param filePath the file path
+     * @return the board detail
+     */
     static BoardDetail loadBoard(String filePath) {
         File boardFile = loadFileOrCreateIfNotExist(filePath);
 
@@ -68,6 +87,12 @@ public interface StbBoardUtil {
         return boardFromFile;
     }
 
+    /**
+     * Save board.
+     *
+     * @param filePath the file path
+     * @param board    the board
+     */
     static void saveBoard(String filePath, BoardDetail board) {
         File boardFile = loadFileOrCreateIfNotExist(filePath);
 

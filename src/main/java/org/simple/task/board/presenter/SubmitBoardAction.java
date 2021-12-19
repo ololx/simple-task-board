@@ -51,6 +51,12 @@ public class SubmitBoardAction extends AnAction {
         StbBoardUtil.saveBoard(e.getProject().getBasePath(), board);
     }
 
+    /**
+     * Gets items.
+     *
+     * @param model the model
+     * @return the items
+     */
     public List<BoardItemDetail> getItems(DefaultTableModel model) {
         return new ArrayList<BoardItemDetail>(){{
             for (int i = 0; i < model.getRowCount(); i++) {
