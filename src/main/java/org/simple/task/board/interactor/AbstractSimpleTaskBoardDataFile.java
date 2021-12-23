@@ -86,7 +86,9 @@ public class AbstractSimpleTaskBoardDataFile {
         try {
             JAXBContext context = JAXBContext.newInstance(BoardDetail.class);
             Unmarshaller um = context.createUnmarshaller();
-            boardFromFile = (BoardDetail) um.unmarshal(new FileReader(dataFile));
+            FileReader fileReader = new FileReader(dataFile);
+            boardFromFile = (BoardDetail) um.unmarshal(fileReader);
+            fileReader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
