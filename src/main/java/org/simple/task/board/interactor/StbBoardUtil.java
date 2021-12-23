@@ -79,7 +79,9 @@ public interface StbBoardUtil {
         try {
             JAXBContext context = JAXBContext.newInstance(BoardDetail.class);
             Unmarshaller um = context.createUnmarshaller();
-            boardFromFile = (BoardDetail) um.unmarshal(new FileReader(boardFile));
+            FileReader fileReader = new FileReader(boardFile);
+            boardFromFile = (BoardDetail) um.unmarshal(fileReader);
+            fileReader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

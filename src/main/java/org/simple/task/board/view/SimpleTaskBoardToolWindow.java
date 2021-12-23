@@ -95,8 +95,13 @@ public class SimpleTaskBoardToolWindow extends SimpleToolWindowPanel {
             StbBoardUtil.saveBoard(project.getBasePath(), board);
         } else {
             board = StbBoardUtil.loadBoard(project.getBasePath());
-            if (board == null) board.setName(project.getName());
-            if (board.getItems() == null) board.setItems(Collections.EMPTY_LIST);
+            if (board.getName() == null) {
+                board.setName(project.getName());
+            }
+
+            if (board.getItems() == null) {
+                board.setItems(Collections.EMPTY_LIST);
+            }
         }
 
         for (BoardItemDetail item : board.getItems()) {
